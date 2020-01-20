@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
-namespace Donnermayer.Extensions.Configuration.Tests
+namespace Extensions.Configuration.Tests
 {
     public class IConfigurationExtensionsTests
     {

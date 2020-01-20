@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
 
-namespace Donnermayer.Extensions.Configuration
+namespace Extensions.Configuration
 {
     public static class IConfigurationExtensions
     {

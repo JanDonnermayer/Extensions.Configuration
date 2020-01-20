@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Donnermayer.Extensions.Configuration\Donnermayer.Extensions.Configuration.csproj" />
+    <ProjectReference Include="..\..\src\Extensions.Configuration\Extensions.Configuration.csproj" />
   </ItemGroup>
 
 </Project>
