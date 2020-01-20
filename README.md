@@ -6,11 +6,9 @@ https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 [![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
 https://www.nuget.org/packages/Extensions.Configuration/)
 
-Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.
+## Description
 
-## Usage
-
-Within system configuration, sometimes references to other configuration entries or environment variables are used.
+Within system configuration, sometimes references to environment variables or other entries are used.
 
 ```json
 {
@@ -22,15 +20,17 @@ Within system configuration, sometimes references to other configuration entries
 This package provides an extension method for **Microsoft.Extensions.Configuration.IConfiguration**,
 which can resolve such references.
 
+## Installation
+
+```powershell
+dotnet add package Extensions.Configuration
+```
+
+## Usage
+
 ```csharp
 using Microsoft.Extensions.Configuration
 
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
 // -> C:\Users\UserXY\.MyApp\preferences.json
-```
-
-## Dotnet CLI
-
-```powershell
-dotnet add package Extensions.Configuration
 ```
