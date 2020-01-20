@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <id>Extensions.Configuration</id>
+    <Id>Extensions.Configuration</Id>
 		<Authors>Jan Donnermayer</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <description>Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.</description>
+    <Description>Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <projectUrl>https://github.com/JanDonnermayer/Extensions.Configurations</projectUrl>
+    <ProjectUrl>https://github.com/JanDonnermayer/Extensions.Configurations</ProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
   </ItemGroup>
 
 </Project>
