@@ -19,12 +19,12 @@ Within system configuration, sometimes references to other configuration entries
 }
 ```
 
-This package provides an extension method on **Microsoft.Extensions.Configuration.IConfiguration**, that provides the desired behaviour.
+This package provides an extension method for **Microsoft.Extensions.Configuration.IConfiguration**,
+which can resolve such references.
 
 ```csharp
-using Microsoft.Extensions.DependencyInjection
+using Microsoft.Extensions.Configuration
 
-// Returns the configuration entry for,
-// with 'HOMEPATH' and 'AppName' resolved.
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
+// -> C:\Users\UserXY\.MyApp\preferences.json
 ```
