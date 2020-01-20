@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pack.local",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/src/Extensions.Configuration/Extensions.Configuration.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release",
+                "-p:PackageVersion=${input:packageVersion}",
+                "-p:AssemblyVersion=${input:packageVersion}",
+                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+     ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "packageVersion",
+            "description": "Specify package version.",
+            "default": "0.0.0"
+        }
+    ]
+}
