@@ -8,7 +8,7 @@ https://www.nuget.org/packages/Extensions.Configuration/)
 
 Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.
 
-## Motivation
+## Usage
 
 Within system configuration, sometimes references to other configuration entries or environment variables are used.
 
