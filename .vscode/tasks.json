@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "pack.local",
+            "label": "dotnet.pack.local",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -16,7 +16,7 @@
                 "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration"
             ],
             "problemMatcher": "$msCompile"
-        },
+        }
      ],
     "inputs": [
         {

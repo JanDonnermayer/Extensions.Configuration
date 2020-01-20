@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// Provides extension methods for <see cref="IConfiguration"/>
+    /// Provides extension methods for <see cref="IConfiguration"/>.
     /// </summary>
     public static class IConfigurationExtensions
     {

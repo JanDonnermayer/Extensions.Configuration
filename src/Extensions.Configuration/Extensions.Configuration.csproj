@@ -8,11 +8,13 @@
 
   <PropertyGroup>
     <Id>Extensions.Configuration</Id>
+    <Version>0.0.1</Version>
+    <Title>Extensions.Configuration</Title>
 		<Authors>Jan Donnermayer</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.</Description>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ProjectUrl>https://github.com/JanDonnermayer/Extensions.Configurations</ProjectUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
