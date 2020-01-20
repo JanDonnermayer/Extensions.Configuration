@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text.RegularExpressions;
-using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration
+namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
     /// Provides extension methods for <see cref="IConfiguration"/>
@@ -45,7 +44,8 @@ namespace Extensions.Configuration
                     evaluator: m => resolveKey(
                         input: m.Groups[1].Value,
                         expressionPath: expressionPath.Add(input)
-                    )
+                    ),
+                    options: RegexOptions.IgnoreCase
                 );
             }
 
