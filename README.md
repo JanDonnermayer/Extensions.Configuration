@@ -1,5 +1,8 @@
 # Extensions.Configuration
 
+[![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
+https://github.com/JanDonnermayer/Extensions.Configuration/actions)
+
 Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration
 
 ## Dotnet CLI
