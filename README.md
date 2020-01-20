@@ -3,13 +3,10 @@
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
 https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 
-Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration
+[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
+https://www.nuget.org/packages/Extensions.Configuration/)
 
-## Dotnet CLI
-
-```powershell
-dotnet add package Extensions.Configuration
-```
+Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.
 
 ## Motivation
 
@@ -30,4 +27,10 @@ using Microsoft.Extensions.Configuration
 
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
 // -> C:\Users\UserXY\.MyApp\preferences.json
+```
+
+## Dotnet CLI
+
+```powershell
+dotnet add package Extensions.Configuration
 ```
