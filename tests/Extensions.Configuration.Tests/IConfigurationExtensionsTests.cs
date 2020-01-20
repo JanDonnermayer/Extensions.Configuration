@@ -16,7 +16,7 @@ namespace Extensions.Configuration.Tests
         }
 
         [Test]
-        public void Test_ResolveValue_ZeroResolveSteps_ResolvesCorrectly()
+        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly()
         {
             // Arrange
             const string KEY_1 = "key1";
@@ -35,7 +35,7 @@ namespace Extensions.Configuration.Tests
 
         
         [Test]
-        public void Test_ResolveValue_ZeroResolveSteps_KeyEmptyString_ResolvesCorrectly()
+        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly()
         {
             // Arrange
             const string KEY_1 = "";
@@ -53,7 +53,7 @@ namespace Extensions.Configuration.Tests
         }
 
         [Test]
-        public void Test_ResolveValue_OneResolveStep_ResolvesCorrectly()
+        public void Test_ResolveValue_OneResolveStep_OneKeyPerStep_ResolvesCorrectly()
         {
             // Arrange
             const string KEY_1 = "key1";
@@ -76,9 +76,34 @@ namespace Extensions.Configuration.Tests
             Assert.AreEqual(VALUE_2, actualValue);
         }
 
+        [Test]
+        public void Test_ResolveValue_OneResolveStep_TwoKeysPerStep_ResolvesCorrectly()
+        {
+            // Arrange
+            const string KEY_1 = "key1";
+            const string KEY_2 = "key2";
+            const string VALUE_1 = "{$env:" + KEY_2 + "}" + "{$env:" + KEY_2 + "}";
+            const string VALUE_2 = "val2";
+
+            Mock.Get(configurationMock)
+                .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
+                .Returns(VALUE_1);
+
+            Mock.Get(configurationMock)
+                .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
+                .Returns(VALUE_2);
+
+            // Act
+            var actualValue = configurationMock.ResolveValue(KEY_1);
+
+            // Assert
+            Assert.AreEqual(VALUE_2 + VALUE_2, actualValue);
+        }
+
+
 
         [Test]
-        public void Test_ResolveValue_TwoResolveSteps_ResolvesCorrectly()
+        public void Test_ResolveValue_TwoResolveSteps_OneKeyPerStep_ResolvesCorrectly()
         {
             // Arrange
             const string KEY_1 = "key1";
@@ -109,11 +134,29 @@ namespace Extensions.Configuration.Tests
 
 
         [Test]
-        public void Test_ResolveValue_OneResolveStep_Loop_ThrowsInvalidOperationException()
+        public void Test_ResolveValue_InfiniteSteps_OneKeyPerStep_ThrowsInvalidOperationException()
         {
             // Arrange
             const string KEY_1 = "key1";
             const string VALUE_1 = "{$env:" + KEY_1 + "}";
+
+            Mock.Get(configurationMock)
+                .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
+                .Returns(VALUE_1);
+
+            // AssertThrows
+            Assert.Throws<InvalidOperationException>(
+                () => configurationMock.ResolveValue(KEY_1)
+            );
+        }
+
+        
+        [Test]
+        public void Test_ResolveValue_InfiniteSteps_TwoKeysPerStep_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            const string KEY_1 = "key1";
+            const string VALUE_1 = "{$env:" + KEY_1 + "}" + "{$env:" + KEY_1 + "}";
 
             Mock.Get(configurationMock)
                 .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
