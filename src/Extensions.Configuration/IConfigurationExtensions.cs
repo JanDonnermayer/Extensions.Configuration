@@ -14,7 +14,7 @@ namespace Extensions.Configuration
         private const string PATTERN = @"\{\$env:([\s\S]*?)\}";
 
         /// <summary>
-        /// Gets the string value associated to the specified <paramref name="key" />,
+        /// Gets the string value associated to the specified <paramref name="key"/>,
         /// operating recursively on placeholders of format {$env:KEY}
         /// </summary>
         /// <remarks>
@@ -32,7 +32,12 @@ namespace Extensions.Configuration
             string resolveExpression(string input, ImmutableHashSet<string> expressionPath)
             {
                 if (expressionPath.Contains(input))
-                    throw new InvalidOperationException("Encountered loop!");
+                {
+                    throw new InvalidOperationException(
+                        $"Encountered loop while trying to resolve expression: '{input}'."
+                        + $"Path: ['{String.Join("' -> '", expressionPath)}']"
+                    );
+                }
 
                 return Regex.Replace(
                     input: input,
