@@ -11,18 +11,18 @@ namespace Extensions.Configuration.Tests
 
         #region TestCaseSources
 
-        private const SubstitutionSyntaxOptions OPTIONS_1 =
-            SubstitutionSyntaxOptions.CurlyBracketsDollarEnv;
+        private const SubstitutionFormatOptions OPTIONS_1 =
+            SubstitutionFormatOptions.CurlyBracketsDollarEnv;
         private const string OPTIONS_1_PREFIX = "{$env:";
         private const string OPTIONS_1_SUFFIX = "}";
 
-        private const SubstitutionSyntaxOptions OPTIONS_2 =
-            SubstitutionSyntaxOptions.DollarCurlyBrackets;
+        private const SubstitutionFormatOptions OPTIONS_2 =
+            SubstitutionFormatOptions.DollarCurlyBrackets;
         private const string OPTIONS_2_PREFIX = "${";
         private const string OPTIONS_2_SUFFIX = "}";
 
-        private const SubstitutionSyntaxOptions OPTIONS_3 =
-            SubstitutionSyntaxOptions.DollarBrackets;
+        private const SubstitutionFormatOptions OPTIONS_3 =
+            SubstitutionFormatOptions.DollarBrackets;
         private const string OPTIONS_3_PREFIX = "$(";
         private const string OPTIONS_3_SUFFIX = ")";
         
@@ -38,7 +38,7 @@ namespace Extensions.Configuration.Tests
         [TestCase(OPTIONS_2)]
         [TestCase(OPTIONS_3)]
         public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly(
-            SubstitutionSyntaxOptions options
+            SubstitutionFormatOptions options
         )
         {
             // Arrange
@@ -61,7 +61,7 @@ namespace Extensions.Configuration.Tests
         [TestCase(OPTIONS_2)]
         [TestCase(OPTIONS_3)]
         public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly(
-            SubstitutionSyntaxOptions options
+            SubstitutionFormatOptions options
         )
         {
             // Arrange
@@ -83,7 +83,7 @@ namespace Extensions.Configuration.Tests
         [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
         [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
         public void Test_ResolveValue_OneResolveStep_OneKeyPerStep_ResolvesCorrectly(
-            SubstitutionSyntaxOptions options, string prefix, string suffix
+            SubstitutionFormatOptions options, string prefix, string suffix
         )
         {
             // Arrange
@@ -111,7 +111,7 @@ namespace Extensions.Configuration.Tests
         [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
         [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
         public void Test_ResolveValue_OneResolveStep_TwoKeysPerStep_ResolvesCorrectly(
-            SubstitutionSyntaxOptions options, string prefix, string suffix
+            SubstitutionFormatOptions options, string prefix, string suffix
         )
         {
             // Arrange

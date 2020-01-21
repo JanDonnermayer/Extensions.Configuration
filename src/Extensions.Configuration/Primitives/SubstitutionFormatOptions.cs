@@ -8,10 +8,10 @@ namespace Microsoft.Extensions.Configuration
     /// The syntax to use for resolvers.
     /// </summary>
     [Flags]
-    public enum SubstitutionSyntaxOptions
+    public enum SubstitutionFormatOptions
     {
         /// <summary>
-        /// No substitutions are recognized.
+        /// No format is recognized.
         /// </summary>
         None = 0,
 

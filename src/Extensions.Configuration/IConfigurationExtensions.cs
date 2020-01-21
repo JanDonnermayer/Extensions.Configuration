@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.Configuration
     {
         /// <summary>
         /// Gets the string value associated to the specified <paramref name="key"/>,
-        /// operating recursively on placeholders of format specified in <paramref name="options"/>
+        /// operating recursively on placeholders of formats specified in <paramref name="options"/>
         /// </summary>
         /// <remarks>
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
@@ -21,10 +21,10 @@ namespace Microsoft.Extensions.Configuration
         /// </remarks>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
-            SubstitutionSyntaxOptions options =
-                SubstitutionSyntaxOptions.CurlyBracketsDollarEnv
-                | SubstitutionSyntaxOptions.DollarBrackets
-                | SubstitutionSyntaxOptions.DollarCurlyBrackets
+            SubstitutionFormatOptions options =
+                SubstitutionFormatOptions.CurlyBracketsDollarEnv
+                | SubstitutionFormatOptions.DollarBrackets
+                | SubstitutionFormatOptions.DollarCurlyBrackets
         )
         {
             if (configuration is null)
