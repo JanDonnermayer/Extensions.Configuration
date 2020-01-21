@@ -19,6 +19,9 @@ namespace Microsoft.Extensions.Configuration
 
             if ((options & SubstitutionFormatOptions.DollarBrackets) != 0)
                 yield return @"\$\(([\s\S]*?)\)";
+
+            if ((options & SubstitutionFormatOptions.Percent) != 0)
+                yield return @"\%([\s\S]*?)\%";
         }
     }
 }

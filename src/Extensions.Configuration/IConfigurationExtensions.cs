@@ -25,6 +25,7 @@ namespace Microsoft.Extensions.Configuration
                 SubstitutionFormatOptions.CurlyBracketsDollarEnv
                 | SubstitutionFormatOptions.DollarBrackets
                 | SubstitutionFormatOptions.DollarCurlyBrackets
+                | SubstitutionFormatOptions.Percent
         )
         {
             if (configuration is null)

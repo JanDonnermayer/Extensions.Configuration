@@ -9,13 +9,18 @@ https://www.nuget.org/packages/Extensions.Configuration/)
 ## Description
 
 Within system configuration, sometimes references to environment variables or other entries are used.
-Hereby, even multiple formats can occur.
 
 ```json
 {
     "AppName" : "MyApp",
-    "UserSettings" : "{$env:HOMEPATH}/.$(AppName)/settings.json"
+    "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/settings.json"
 }
+```
+
+Popular formats for placholders include:
+
+```
+{$env:KEY}, ${KEY}, $(KEY), %KEY%
 ```
 
 This package provides an extension method for **Microsoft.Extensions.Configuration.IConfiguration**,

@@ -28,6 +28,11 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// $(KEY)
         /// </summary>
-        DollarBrackets = 1 << 2
+        DollarBrackets = 1 << 2,
+
+        /// <summary>
+        /// %KEY%
+        /// </summary>
+        Percent = 1 << 3
     }
 }
