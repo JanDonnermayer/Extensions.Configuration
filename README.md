@@ -3,9 +3,6 @@
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
 https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 
-[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
-https://www.nuget.org/packages/Extensions.Configuration/)
-
 ## Description
 
 Within system configuration, sometimes references to environment variables or other entries are used.
