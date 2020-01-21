@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.Configuration
             if ((syntaxOptions & SubstitutionSyntaxOptions.DollarCurlyBrackets) != 0)
                 yield return @"\$\{([\s\S]*?)\}";
 
-            if ((syntaxOptions & SubstitutionSyntaxOptions.DollarCurlyBrackets) != 0)
+            if ((syntaxOptions & SubstitutionSyntaxOptions.DollarBrackets) != 0)
                 yield return @"\$\(([\s\S]*?)\)";
         }
     }
