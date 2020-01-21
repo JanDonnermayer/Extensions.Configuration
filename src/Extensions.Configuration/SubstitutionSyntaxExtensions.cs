@@ -9,8 +9,6 @@ namespace Microsoft.Extensions.Configuration
         /// Converts the specified <paramref name="syntaxOptions"/> to their corresponding 
         /// Regular Expressions.
         /// </summary>
-        /// <param name="syntaxOptions"></param>
-        /// <returns></returns>
         public static IEnumerable<string> ToRegexPatterns(this SubstitutionSyntaxOptions syntaxOptions)
         {
             if (!Enum.IsDefined(typeof(SubstitutionSyntaxOptions), syntaxOptions))
