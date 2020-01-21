@@ -156,8 +156,8 @@ namespace Extensions.Configuration.Tests
             const string KEY_1 = "key1";
             const string KEY_2 = "key2";
             const string KEY_3 = "key3";
-            const string VALUE_1 = OPTIONS_1_PREFIX + KEY_2 + OPTIONS_1_SUFFIX;
-            const string VALUE_2 = OPTIONS_1_PREFIX + KEY_3 + OPTIONS_1_SUFFIX;
+            string VALUE_1 = prefix + KEY_2 + suffix;
+            string VALUE_2 = prefix + KEY_3 + suffix;
             const string VALUE_3 = "val2";
 
             Mock.Get(configurationMock)
@@ -173,7 +173,7 @@ namespace Extensions.Configuration.Tests
                 .Returns(VALUE_3);
 
             // Act
-            var actualValue = configurationMock.ResolveValue(KEY_1);
+            var actualValue = configurationMock.ResolveValue(KEY_1, options);
 
             // Assert
             Assert.AreEqual(VALUE_3, actualValue);
