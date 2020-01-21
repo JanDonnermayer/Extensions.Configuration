@@ -9,11 +9,12 @@ https://www.nuget.org/packages/Extensions.Configuration/)
 ## Description
 
 Within system configuration, sometimes references to environment variables or other entries are used.
+Hereby, even multiple formats can occur.
 
 ```json
 {
     "AppName" : "MyApp",
-    "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/settings.json"
+    "UserSettings" : "{$env:HOMEPATH}/.$(AppName)/settings.json"
 }
 ```
 
