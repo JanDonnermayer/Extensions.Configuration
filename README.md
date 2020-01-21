@@ -3,9 +3,6 @@
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
 https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 
-[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
-https://www.nuget.org/packages/Extensions.Configuration/)
-
 ## Description
 
 Within system configuration, sometimes references to environment variables or other entries are used.
@@ -15,6 +12,12 @@ Within system configuration, sometimes references to environment variables or ot
     "AppName" : "MyApp",
     "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/settings.json"
 }
+```
+
+Popular formats for placholders include:
+
+```
+{$env:KEY}, ${KEY}, $(KEY), %KEY%
 ```
 
 This package provides an extension method for **Microsoft.Extensions.Configuration.IConfiguration**,
@@ -35,7 +38,7 @@ using Microsoft.Extensions.Configuration
 
 hostbuilder.ConfigureAppConfiguration(config =>
 {
-    config  // files < environment < cmd-line 
+    config  // files < environment < cmd-line
         .AddJsonFile(...)
         .AddEnvironmentVariables()
         .AddCommandLine(args);

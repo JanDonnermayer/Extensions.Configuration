@@ -8,12 +8,11 @@
 
   <PropertyGroup>
     <Id>Extensions.Configuration</Id>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Title>Extensions.Configuration</Title>
 		<Authors>Jan Donnermayer</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Provides extension methods for Microsoft.Extensions.Configuration.IConfiguration.</Description>
-    <ProjectUrl>https://github.com/JanDonnermayer/Extensions.Configurations</ProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -32,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
   </ItemGroup>
 

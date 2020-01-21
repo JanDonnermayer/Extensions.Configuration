@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Microsoft.Extensions.Configuration
@@ -10,17 +11,22 @@ namespace Microsoft.Extensions.Configuration
     /// </summary>
     public static class IConfigurationExtensions
     {
-        private const string PATTERN = @"\{\$env:([\s\S]*?)\}";
-
         /// <summary>
         /// Gets the string value associated to the specified <paramref name="key"/>,
-        /// operating recursively on placeholders of format {$env:KEY}
+        /// operating recursively on placeholders of formats specified in <paramref name="options"/>
         /// </summary>
         /// <remarks>
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
         /// during the substitution process.
         /// </remarks>
-        public static string ResolveValue(this IConfiguration configuration, string key)
+        public static string ResolveValue(
+            this IConfiguration configuration, string key,
+            SubstitutionFormatOptions options =
+                SubstitutionFormatOptions.CurlyBracketsDollarEnv
+                | SubstitutionFormatOptions.DollarBrackets
+                | SubstitutionFormatOptions.DollarCurlyBrackets
+                | SubstitutionFormatOptions.Percent
+        )
         {
             if (configuration is null)
                 throw new ArgumentNullException(nameof(configuration));
@@ -38,14 +44,22 @@ namespace Microsoft.Extensions.Configuration
                     );
                 }
 
-                return Regex.Replace(
-                    input: input,
-                    pattern: PATTERN,
-                    evaluator: m => resolveKey(
-                        input: m.Groups[1].Value,
-                        expressionPath: expressionPath.Add(input)
-                    ),
-                    options: RegexOptions.IgnoreCase
+                var nextExpresionPath = expressionPath.Add(input);
+
+                return options
+                    .ToRegexPatterns()
+                    .Aggregate(input, (input, pattern) =>
+                    {
+                        return Regex.Replace(
+                            input: input,
+                            pattern: pattern,
+                            evaluator: m => resolveKey(
+                                input: m.Groups[1].Value,
+                                expressionPath: nextExpresionPath
+                            ),
+                            options: RegexOptions.IgnoreCase
+                        );
+                    }
                 );
             }
 
