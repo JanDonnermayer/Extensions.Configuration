@@ -18,7 +18,7 @@ namespace Extensions.Configuration.Tests
         {
             this.configurationMock = Mock.Of<IConfiguration>();
             this.valueProviderMock = Mock.Of<Func<IConfiguration, string, string>>();
-            this.proxy = new ConfigurationResolverProxy(configurationMock, valueProviderMock);
+            this.proxy = new ConfigurationProxy(configurationMock, valueProviderMock);
         }
 
         [Test]
@@ -43,6 +43,25 @@ namespace Extensions.Configuration.Tests
                     ),
                     times: Times.Once
                 );
+        }
+
+        [TestCase("val")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void Test_Indexer_ReturnsDelegateReturnValue(string delegateReturnValue)
+        {
+            // Arrange
+            Mock.Get(configurationMock)
+                .SetReturnsDefault<string>(null);
+
+            Mock.Get(valueProviderMock)
+                .SetReturnsDefault(delegateReturnValue);
+
+            // Act
+            var actualReturnValue = proxy[string.Empty];
+
+            // Assert
+            Assert.AreEqual(delegateReturnValue, actualReturnValue);
         }
     }
 }
