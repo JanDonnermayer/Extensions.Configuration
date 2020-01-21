@@ -9,14 +9,24 @@ namespace Extensions.Configuration.Tests
     {
         private IConfiguration configurationMock;
 
+        private const SubstitutionSyntaxOptions OPTIONS_1 =
+            SubstitutionSyntaxOptions.CurlyBracketsDollarEnv;
+        private const string OPTIONS_1_PREFIX = "{$env:";
+        private const string OPTIONS_1_SUFFIX = "}";
+
+        // ToDo: Add other options!
+
+
         [SetUp]
         public void Setup()
         {
             this.configurationMock = Mock.Of<IConfiguration>();
         }
 
-        [Test]
-        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly()
+        [TestCase(OPTIONS_1)]
+        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly(
+            SubstitutionSyntaxOptions options
+        )
         {
             // Arrange
             const string KEY_1 = "key1";
@@ -27,15 +37,17 @@ namespace Extensions.Configuration.Tests
                 .Returns(VALUE_1);
 
             // Act
-            var actualValue = configurationMock.ResolveValue(KEY_1);
+            var actualValue = configurationMock.ResolveValue(KEY_1, options);
 
             // Assert
             Assert.AreEqual(VALUE_1, actualValue);
         }
 
-        
-        [Test]
-        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly()
+
+        [TestCase(OPTIONS_1)]
+        public void Test_ResolveValue_ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly(
+            SubstitutionSyntaxOptions options
+        )
         {
             // Arrange
             const string KEY_1 = "";
@@ -46,19 +58,21 @@ namespace Extensions.Configuration.Tests
                 .Returns(VALUE_1);
 
             // Act
-            var actualValue = configurationMock.ResolveValue(KEY_1);
+            var actualValue = configurationMock.ResolveValue(KEY_1, options);
 
             // Assert
             Assert.AreEqual(VALUE_1, actualValue);
         }
 
-        [Test]
-        public void Test_ResolveValue_OneResolveStep_OneKeyPerStep_ResolvesCorrectly()
+        [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+        public void Test_ResolveValue_OneResolveStep_OneKeyPerStep_ResolvesCorrectly(
+            SubstitutionSyntaxOptions options, string prefix, string suffix
+        )
         {
             // Arrange
             const string KEY_1 = "key1";
             const string KEY_2 = "key2";
-            const string VALUE_1 = "{$env:" + KEY_2 + "}";
+            string VALUE_1 = prefix + KEY_2 + suffix;
             const string VALUE_2 = "val2";
 
             Mock.Get(configurationMock)
@@ -70,19 +84,21 @@ namespace Extensions.Configuration.Tests
                 .Returns(VALUE_2);
 
             // Act
-            var actualValue = configurationMock.ResolveValue(KEY_1);
+            var actualValue = configurationMock.ResolveValue(KEY_1, options);
 
             // Assert
             Assert.AreEqual(VALUE_2, actualValue);
         }
 
-        [Test]
-        public void Test_ResolveValue_OneResolveStep_TwoKeysPerStep_ResolvesCorrectly()
+        [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+        public void Test_ResolveValue_OneResolveStep_TwoKeysPerStep_ResolvesCorrectly(
+            SubstitutionSyntaxOptions options, string prefix, string suffix
+        )
         {
             // Arrange
             const string KEY_1 = "key1";
             const string KEY_2 = "key2";
-            const string VALUE_1 = "{$env:" + KEY_2 + "}" + "{$env:" + KEY_2 + "}";
+            string VALUE_1 = prefix + KEY_2 + suffix + prefix + KEY_2 + suffix;
             const string VALUE_2 = "val2";
 
             Mock.Get(configurationMock)
@@ -94,15 +110,13 @@ namespace Extensions.Configuration.Tests
                 .Returns(VALUE_2);
 
             // Act
-            var actualValue = configurationMock.ResolveValue(KEY_1);
+            var actualValue = configurationMock.ResolveValue(KEY_1, options);
 
             // Assert
             Assert.AreEqual(VALUE_2 + VALUE_2, actualValue);
         }
 
 
-
-        [Test]
         public void Test_ResolveValue_TwoResolveSteps_OneKeyPerStep_ResolvesCorrectly()
         {
             // Arrange
@@ -150,7 +164,7 @@ namespace Extensions.Configuration.Tests
             );
         }
 
-        
+
         [Test]
         public void Test_ResolveValue_InfiniteSteps_TwoKeysPerStep_ThrowsInvalidOperationException()
         {

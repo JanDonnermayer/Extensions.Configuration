@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Microsoft.Extensions.Configuration
 {
+
     /// <summary>
     /// Provides extension methods for <see cref="IConfiguration"/>.
     /// </summary>
     public static class IConfigurationExtensions
     {
-        private const string PATTERN = @"\{\$env:([\s\S]*?)\}";
 
         /// <summary>
         /// Gets the string value associated to the specified <paramref name="key"/>,
@@ -20,7 +21,9 @@ namespace Microsoft.Extensions.Configuration
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
         /// during the substitution process.
         /// </remarks>
-        public static string ResolveValue(this IConfiguration configuration, string key)
+        public static string ResolveValue(
+            this IConfiguration configuration, string key,
+            SubstitutionSyntaxOptions options = SubstitutionSyntaxOptions.CurlyBracketsDollarEnv)
         {
             if (configuration is null)
                 throw new ArgumentNullException(nameof(configuration));
@@ -38,23 +41,31 @@ namespace Microsoft.Extensions.Configuration
                     );
                 }
 
-                return Regex.Replace(
-                    input: input,
-                    pattern: PATTERN,
-                    evaluator: m => resolveKey(
-                        input: m.Groups[1].Value,
-                        expressionPath: expressionPath.Add(input)
-                    ),
-                    options: RegexOptions.IgnoreCase
+                var nextExpresionPath = expressionPath.Add(input);
+
+                return options
+                    .ToRegexPatterns()
+                    .Aggregate(input, (input, pattern) =>
+                    {
+                        return Regex.Replace(
+                            input: input,
+                            pattern: pattern,
+                            evaluator: m => resolveKey(
+                                input: m.Groups[1].Value,
+                                expressionPath: nextExpresionPath
+                            ),
+                            options: RegexOptions.IgnoreCase
+                        );
+                    }
                 );
             }
 
-             string resolveKey(string input, ImmutableHashSet<string> expressionPath) =>
-                configuration[input] switch
-                {
-                    String value => resolveExpression(value, expressionPath),
-                    _ => input
-                };
+            string resolveKey(string input, ImmutableHashSet<string> expressionPath) =>
+               configuration[input] switch
+               {
+                   String value => resolveExpression(value, expressionPath),
+                   _ => input
+               };
 
             return resolveKey(key, ImmutableHashSet<string>.Empty);
         }
