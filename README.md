@@ -28,9 +28,23 @@ dotnet add package Extensions.Configuration
 
 ## Usage
 
+### In Program.cs
+
 ```csharp
 using Microsoft.Extensions.Configuration
 
+hostbuilder.ConfigureAppConfiguration(config =>
+{
+    config  // files < environment < cmd-line 
+        .AddJsonFile(...)
+        .AddEnvironmentVariables()
+        .AddCommandLine(args);
+})
+```
+
+### In Startup.cs
+
+```csharp
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
 // -> C:\Users\UserXY\.MyApp\preferences.json
 ```
