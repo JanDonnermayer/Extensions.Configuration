@@ -38,7 +38,7 @@ using Microsoft.Extensions.Configuration
 
 hostbuilder.ConfigureAppConfiguration(config =>
 {
-    config  // files < environment < cmd-line 
+    config  // files < environment < cmd-line
         .AddJsonFile(...)
         .AddEnvironmentVariables()
         .AddCommandLine(args);
