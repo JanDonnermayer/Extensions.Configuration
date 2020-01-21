@@ -63,7 +63,6 @@ namespace Extensions.Configuration.Tests
             Assert.AreEqual(VALUE_1, actualValue);
         }
 
-
         [TestCase(OPTIONS_1)]
         [TestCase(OPTIONS_2)]
         [TestCase(OPTIONS_3)]
@@ -242,7 +241,7 @@ namespace Extensions.Configuration.Tests
         {
             Assert.Throws<ArgumentNullException>(
                 () => configurationMock.ResolveValue(null)
-            );
+           );
         }
     }
 }
