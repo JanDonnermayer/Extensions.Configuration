@@ -18,10 +18,11 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="options">
         /// The formats recognized as placeholders.
         /// </param>
-        /// <remarks>
+        /// <throws> 
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
         /// during the substitution process.
-        /// </remarks>
+        /// Throws <see cref="KeyNotFoundException"/> when a key is not found.
+        /// </throws>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
             SubstitutionFormatOptions options =
@@ -84,7 +85,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="options">
         /// The formats recognized as placeholders.
         /// </param>
-        public static IConfiguration ToResolvedConfiguration(
+        public static IConfiguration Resolved(
             this IConfiguration configuration,
             SubstitutionFormatOptions options =
                 SubstitutionFormatOptions.CurlyBracketsDollarEnv
@@ -96,13 +97,37 @@ namespace Microsoft.Extensions.Configuration
             if (configuration is null)
                 throw new ArgumentNullException(nameof(configuration));
 
-            return new ConfigurationResolverProxy(
+            static string? resolveValue(
+                IConfiguration config, string key, SubstitutionFormatOptions options
+            )
+            {
+                try
+                {
+                    return ResolveValue(
+                        configuration: config,
+                        key: key,
+                        options: options
+                    );
+                }
+                catch (InvalidOperationException)
+                {
+                    // required by implicit contract
+                    return null;
+                }
+                catch (KeyNotFoundException)
+                {
+                    // required by implicit contract
+                    return null;
+                }
+            }
+
+            return new ConfigurationProxy(
                 configuration: configuration,
-                valueProvider: (config, key) => ResolveValue(
-                    configuration: config,
+                valueProvider: (config, key) => resolveValue(
+                    config: config,
                     key: key,
                     options: options
-                )
+                )! // required by signature
             );
         }
     }
