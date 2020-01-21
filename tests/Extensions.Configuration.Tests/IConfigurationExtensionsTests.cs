@@ -142,8 +142,8 @@ namespace Extensions.Configuration.Tests
             const string KEY_1 = "key1";
             const string KEY_2 = "key2";
             const string KEY_3 = "key3";
-            const string VALUE_1 = "{$env:" + KEY_2 + "}";
-            const string VALUE_2 = "{$env:" + KEY_3 + "}";
+            const string VALUE_1 = OPTIONS_1_PREFIX + KEY_2 + OPTIONS_1_SUFFIX;
+            const string VALUE_2 = OPTIONS_1_PREFIX + KEY_3 + OPTIONS_1_SUFFIX;
             const string VALUE_3 = "val2";
 
             Mock.Get(configurationMock)
@@ -171,7 +171,7 @@ namespace Extensions.Configuration.Tests
         {
             // Arrange
             const string KEY_1 = "key1";
-            const string VALUE_1 = "{$env:" + KEY_1 + "}";
+            const string VALUE_1 = OPTIONS_1_PREFIX + KEY_1 + OPTIONS_1_SUFFIX;
 
             Mock.Get(configurationMock)
                 .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
@@ -189,7 +189,8 @@ namespace Extensions.Configuration.Tests
         {
             // Arrange
             const string KEY_1 = "key1";
-            const string VALUE_1 = "{$env:" + KEY_1 + "}" + "{$env:" + KEY_1 + "}";
+            const string VALUE_1 = OPTIONS_1_PREFIX + KEY_1 + OPTIONS_1_SUFFIX 
+                + OPTIONS_1_PREFIX + KEY_1 + OPTIONS_1_SUFFIX;
 
             Mock.Get(configurationMock)
                 .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
