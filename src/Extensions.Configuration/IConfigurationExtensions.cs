@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.Configuration
     {
         /// <summary>
         /// Gets the string value associated to the specified <paramref name="key"/>,
-        /// operating recursively on placeholders of format {$env:KEY}
+        /// operating recursively on placeholders of format specified in <paramref name="options"/>
         /// </summary>
         /// <remarks>
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
