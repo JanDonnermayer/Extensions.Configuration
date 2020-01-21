@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
@@ -179,7 +180,6 @@ namespace Extensions.Configuration.Tests
             Assert.AreEqual(VALUE_3, actualValue);
         }
 
-
         [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
         [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
         [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
@@ -201,7 +201,6 @@ namespace Extensions.Configuration.Tests
                 () => configurationMock.ResolveValue(KEY_1, options)
             );
         }
-
 
         [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
         [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
@@ -225,6 +224,19 @@ namespace Extensions.Configuration.Tests
             );
         }
 
+        [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+        [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
+        [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
+        [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
+        public void Test_ResolveValue_KeyNotExists_ThrowsKeyNotFoundException(
+            SubstitutionFormatOptions options, string prefix, string suffix
+        )
+        {
+            Assert.Throws<KeyNotFoundException>(
+                () => configurationMock.ResolveValue(prefix + suffix, options)
+            );
+        }
+
         [Test]
         public void Test_ResolveValue_KeyNull_ThrowsArgumentNullException()
         {
@@ -232,6 +244,5 @@ namespace Extensions.Configuration.Tests
                 () => configurationMock.ResolveValue(null)
             );
         }
-
     }
 }

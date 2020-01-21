@@ -67,7 +67,7 @@ namespace Microsoft.Extensions.Configuration
                configuration[input] switch
                {
                    String value => resolveExpression(value, expressionPath),
-                   _ => input
+                   _ => throw new KeyNotFoundException($"No such key: '{input}'")
                };
 
             return resolveKey(key, ImmutableHashSet<string>.Empty);
