@@ -244,4 +244,5 @@ namespace Extensions.Configuration.Tests
            );
         }
     }
+
 }
