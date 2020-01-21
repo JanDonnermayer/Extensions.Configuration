@@ -6,13 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace Microsoft.Extensions.Configuration
 {
-
     /// <summary>
     /// Provides extension methods for <see cref="IConfiguration"/>.
     /// </summary>
     public static class IConfigurationExtensions
     {
-
         /// <summary>
         /// Gets the string value associated to the specified <paramref name="key"/>,
         /// operating recursively on placeholders of format {$env:KEY}
@@ -23,7 +21,11 @@ namespace Microsoft.Extensions.Configuration
         /// </remarks>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
-            SubstitutionSyntaxOptions options = SubstitutionSyntaxOptions.CurlyBracketsDollarEnv)
+            SubstitutionSyntaxOptions options =
+                SubstitutionSyntaxOptions.CurlyBracketsDollarEnv
+                | SubstitutionSyntaxOptions.DollarBrackets
+                | SubstitutionSyntaxOptions.DollarCurlyBrackets
+        )
         {
             if (configuration is null)
                 throw new ArgumentNullException(nameof(configuration));
