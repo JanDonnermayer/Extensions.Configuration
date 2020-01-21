@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
 
 namespace Microsoft.Extensions.Configuration
 {
-    internal class ConfigurationResolverProxy : IConfiguration
+    internal class ConfigurationProxy : IConfiguration
     {
         private readonly IConfiguration configuration;
         private readonly Func<IConfiguration, string, string> valueProvider;
 
-        public ConfigurationResolverProxy(
+        public ConfigurationProxy(
             IConfiguration configuration,
             Func<IConfiguration, string, string> valueProvider
         )
