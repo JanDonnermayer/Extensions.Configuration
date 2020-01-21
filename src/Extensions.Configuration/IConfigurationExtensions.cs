@@ -63,12 +63,12 @@ namespace Microsoft.Extensions.Configuration
                 );
             }
 
-            string resolveKey(string input, ImmutableHashSet<string> expressionPath) =>
-               configuration[input] switch
-               {
-                   String value => resolveExpression(value, expressionPath),
-                   _ => throw new KeyNotFoundException($"No such key: '{input}'")
-               };
+             string resolveKey(string input, ImmutableHashSet<string> expressionPath) =>
+                configuration[input] switch
+                {
+                    String value => resolveExpression(value, expressionPath),
+                    _ => throw new KeyNotFoundException($"No such key: '{input}'")
+                };
 
             return resolveKey(key, ImmutableHashSet<string>.Empty);
         }
