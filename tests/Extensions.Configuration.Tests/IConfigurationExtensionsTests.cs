@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
@@ -176,5 +177,12 @@ namespace Extensions.Configuration.Tests
             );
         }
 
+        [Test]
+        public void Test_ResolveValue_KeyNotExists_ThrowsKeyNotFoundException()
+        {
+            Assert.Throws<KeyNotFoundException>(
+                () => configurationMock.ResolveValue("{$env:}")
+            );
+        }
     }
 }
