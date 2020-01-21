@@ -11,9 +11,6 @@ namespace Microsoft.Extensions.Configuration
         /// </summary>
         public static IEnumerable<string> ToRegexPatterns(this SubstitutionSyntaxOptions syntaxOptions)
         {
-            if (!Enum.IsDefined(typeof(SubstitutionSyntaxOptions), syntaxOptions))
-                throw new ArgumentException("Invalid options!");
-
             if ((syntaxOptions & SubstitutionSyntaxOptions.CurlyBracketsDollarEnv) != 0)
                 yield return @"\{\$env:([\s\S]*?)\}";
 
