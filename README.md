@@ -13,7 +13,7 @@ Within system configuration, sometimes references to environment variables or ot
 ```json
 {
     "AppName" : "MyApp",
-    "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/preferences.json"
+    "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/settings.json"
 }
 ```
 
