@@ -25,11 +25,7 @@ namespace Microsoft.Extensions.Configuration
         /// </throws>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
-            SubstitutionFormatOptions options =
-                SubstitutionFormatOptions.CurlyBracketsDollarEnv
-                | SubstitutionFormatOptions.DollarBrackets
-                | SubstitutionFormatOptions.DollarCurlyBrackets
-                | SubstitutionFormatOptions.Percent
+            SubstitutionFormatOptions options = SubstitutionFormatOptions.All
         )
         {
             if (configuration is null)
@@ -78,6 +74,40 @@ namespace Microsoft.Extensions.Configuration
         }
 
         /// <summary>
+        /// Tries to the string value associated to the specified <paramref name="key"/>,
+        /// recursively resolving placeholders of formats specified in <paramref name="options"/>.
+        /// If found returns true, else: false.
+        /// </summary>
+        /// <param name="options">
+        /// The formats recognized as placeholders.
+        /// </param>
+        public static bool TryResolveValue(this IConfiguration configuration, string key,
+            out string? value, SubstitutionFormatOptions options = SubstitutionFormatOptions.All
+        )
+        {
+            if (configuration is null)
+                throw new ArgumentNullException(nameof(configuration));
+
+                try
+                {
+                    value = ResolveValue(
+                        configuration: configuration,
+                        key: key,
+                        options: options
+                    );
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                }
+                catch (KeyNotFoundException)
+                {
+                }
+                value = null;
+                return false;
+        }
+
+        /// <summary>
         /// Creates an instance of <see cref="IConfiguration"/>,
         /// that accesses the specified instance <paranref name="configuration"/>,
         /// recursively resolving placeholders of formats specified in <paramref name="options"/>
@@ -87,47 +117,20 @@ namespace Microsoft.Extensions.Configuration
         /// </param>
         public static IConfiguration Resolved(
             this IConfiguration configuration,
-            SubstitutionFormatOptions options =
-                SubstitutionFormatOptions.CurlyBracketsDollarEnv
-                | SubstitutionFormatOptions.DollarBrackets
-                | SubstitutionFormatOptions.DollarCurlyBrackets
-                | SubstitutionFormatOptions.Percent
+            SubstitutionFormatOptions options = SubstitutionFormatOptions.All
         )
         {
             if (configuration is null)
                 throw new ArgumentNullException(nameof(configuration));
 
-            static string? resolveValue(
-                IConfiguration config, string key, SubstitutionFormatOptions options
-            )
-            {
-                try
-                {
-                    return ResolveValue(
-                        configuration: config,
-                        key: key,
-                        options: options
-                    );
-                }
-                catch (InvalidOperationException)
-                {
-                    // required by implicit contract
-                    return null;
-                }
-                catch (KeyNotFoundException)
-                {
-                    // required by implicit contract
-                    return null;
-                }
-            }
-
             return new ConfigurationProxy(
                 configuration: configuration,
-                valueProvider: (config, key) => resolveValue(
-                    config: config,
+                valueProvider: (config, key) => TryResolveValue(
+                    configuration: config,
                     key: key,
+                    value: out var val,
                     options: options
-                )! // required by signature
+                ) ? val! : null! // Required by signature
             );
         }
     }

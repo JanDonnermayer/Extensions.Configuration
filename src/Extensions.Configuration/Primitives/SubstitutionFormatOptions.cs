@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.Configuration
     public enum SubstitutionFormatOptions
     {
         /// <summary>
-        /// No format is recognized.
+        /// No format.
         /// </summary>
         None = 0,
 
@@ -33,6 +33,14 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// %KEY%
         /// </summary>
-        Percent = 1 << 3
+        Percent = 1 << 3,
+
+        /// <summary>
+        /// All other formats.
+        /// </summary>
+        All = CurlyBracketsDollarEnv
+            | DollarCurlyBrackets
+            | DollarBrackets
+            | Percent
     }
 }
