@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Moq;
@@ -6,21 +6,8 @@ using NUnit.Framework;
 
 namespace Extensions.Configuration.Tests
 {
-    public class IConfigurationExtensionsTests
+    public partial class IConfigurationExtensionsTests
     {
-        public class Test_Resolved
-        {
-            private IConfiguration configurationMock;
-
-            [SetUp]
-            public void Setup()
-            {
-                this.configurationMock = Mock.Of<IConfiguration>();
-            }
-       
-
-        }
-
         public class Test_ResolveValue
         {
             #region TestCaseSources
