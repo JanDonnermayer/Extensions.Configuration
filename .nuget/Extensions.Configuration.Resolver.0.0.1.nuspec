@@ -12,6 +12,7 @@
     <license type="expression">MIT</license>
     <description>Functionality to resolve values from configuration providers for Microsoft.Extensions.Configuration.</description>
     <summary>Functionality to resolve values from configuration providers for Microsoft.Extensions.Configuration.</summary>
+    <repository type="git" url="https://github.com/JanDonnermayer/Extensions.Configuration.Resolver.json" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="2.0.0" exclude="Build,Analyzers" />
@@ -23,6 +24,6 @@
   <files>
     <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.dll" target="lib\netstandard2.0\Extensions.Configuration.Resolver.dll" />
     <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.xml" target="lib\netstandard2.0\Extensions.Configuration.Resolver.xml" />
-    <file src="Icon.png" target="Icon.png"/>
+    <file src="Icon_bright.png" target="Icon.png"/>
   </files>
 </package>

@@ -17,7 +17,7 @@ Within system configuration, sometimes references to other configuration entries
 }
 ```
 
-This package Adds functionality to **Microsoft.Extensions.Configuration**,
+This package adds functionality to **Microsoft.Extensions.Configuration**,
 which can resolve such references.
 
 ## Installation
