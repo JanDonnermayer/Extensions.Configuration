@@ -3,30 +3,33 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
-namespace Extensions.Configuration.Tests
+namespace Extensions.Configuration.Resolver.Tests
 {
-    public class ConfigurationSectionProxyTests
+    public class ConfigurationProxyTests
     {
+        private IConfiguration configurationMock;
+
         private IConfigurationSection configurationSectionMock;
 
         private Func<IConfiguration, string, string> valueProviderMock;
 
-        private ConfigurationSectionProxy proxy;
+        private ConfigurationProxy proxy;
 
 
         [SetUp]
         public void Setup()
         {
+            this.configurationMock = Mock.Of<IConfiguration>();
             this.configurationSectionMock = Mock.Of<IConfigurationSection>();
             this.valueProviderMock = Mock.Of<Func<IConfiguration, string, string>>();
-            this.proxy = new ConfigurationSectionProxy(configurationSectionMock, valueProviderMock);
+            this.proxy = new ConfigurationProxy(configurationMock, valueProviderMock);
         }
 
         [Test]
         public void Test_Indexer_DelegateInvokedOnSpecifiedInternalConfig()
         {
             // Arrange
-            Mock.Get(configurationSectionMock)
+            Mock.Get(configurationMock)
                 .SetReturnsDefault(string.Empty);
 
             Mock.Get(valueProviderMock)
@@ -39,7 +42,7 @@ namespace Extensions.Configuration.Tests
             Mock.Get(valueProviderMock)
                 .Verify(
                     expression: vp => vp.Invoke(
-                        It.Is<IConfiguration>(cfg => cfg == configurationSectionMock),
+                        It.Is<IConfiguration>(cfg => cfg == configurationMock),
                         It.IsAny<string>()
                     ),
                     times: Times.Once
@@ -52,7 +55,7 @@ namespace Extensions.Configuration.Tests
         public void Test_Indexer_ReturnsDelegateReturnValue(string delegateReturnValue)
         {
             // Arrange
-            Mock.Get(configurationSectionMock)
+            Mock.Get(configurationMock)
                 .SetReturnsDefault<string>(null);
 
             Mock.Get(valueProviderMock)
@@ -68,10 +71,10 @@ namespace Extensions.Configuration.Tests
         [TestCase("val")]
         [TestCase("")]
         [TestCase(null)]
-        public void Test_GetSection_ReturnsNewConfigurationSectionProxy(string sectionKey)
+        public void Test_GetSection_ReturnsConfigurationSectionProxy(string sectionKey)
         {
             // Arrange
-            Mock.Get(configurationSectionMock)
+            Mock.Get(configurationMock)
                 .SetReturnsDefault(configurationSectionMock);
 
             // Act
@@ -79,7 +82,6 @@ namespace Extensions.Configuration.Tests
 
             // Assert
             Assert.IsInstanceOf<ConfigurationSectionProxy>(section);
-            Assert.AreNotSame(section, configurationSectionMock);
         }
     }
 }

@@ -3,17 +3,17 @@
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
 https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 
-[![](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](
-https://www.nuget.org/packages/Extensions.Configuration/)
+[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
+https://www.nuget.org/packages/Extensions.Configuration.Resolver/)
 
 ## Description
 
-Within system configuration, sometimes references to environment variables or other entries are used.
+Within system configuration, sometimes references to other configuration entries are used.
 
 ```json
 {
     "AppName" : "MyApp",
-    "UserSettings" : "{$env:HOMEPATH}/.{$env:AppName}/settings.json"
+    "UserSettings" : "${HOMEPATH}/.{$env:AppName}/settings.json"
 }
 ```
 
@@ -23,7 +23,7 @@ Popular formats for placholders include:
 {$env:KEY}, ${KEY}, $(KEY), %KEY%
 ```
 
-This package provides an extension method for **Microsoft.Extensions.Configuration.IConfiguration**,
+This package Adds functionality to **Microsoft.Extensions.Configuration**,
 which can resolve such references.
 
 ## Installation
@@ -41,7 +41,7 @@ using Microsoft.Extensions.Configuration
 
 hostbuilder.ConfigureAppConfiguration(config =>
 {
-    config  // files < environment < cmd-line
+    config  
         .AddJsonFile(...)
         .AddEnvironmentVariables()
         .AddCommandLine(args);
@@ -52,5 +52,5 @@ hostbuilder.ConfigureAppConfiguration(config =>
 
 ```csharp
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
-// -> C:\Users\UserXY\.MyApp\preferences.json
+// Returns e.g.: C:\Users\MyUser\.MyApp\settings.json
 ```

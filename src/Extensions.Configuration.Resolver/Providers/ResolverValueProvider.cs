@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Extensions.Configuration
+namespace Extensions.Configuration.Resolver
 {
     internal class ResolverValueProvider : IValueProvider
     {

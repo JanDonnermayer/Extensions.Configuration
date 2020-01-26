@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Microsoft.Extensions.Configuration
+namespace Extensions.Configuration.Resolver
 {
     /// <summary>
     /// The key-substitution syntax to use for resolvers.

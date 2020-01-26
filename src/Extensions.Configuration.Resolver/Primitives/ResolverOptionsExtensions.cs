@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Extensions.Configuration
+namespace Extensions.Configuration.Resolver
 {
     internal static class ResolverOptionsExtensions
     {
