@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Linq;
+
 
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// The syntax to use for resolvers.
+    /// The key-substitution syntax to use for resolvers.
     /// </summary>
     [Flags]
-    public enum SubstitutionFormatOptions
+    public enum ResolverOptions
     {
         /// <summary>
         /// No format.

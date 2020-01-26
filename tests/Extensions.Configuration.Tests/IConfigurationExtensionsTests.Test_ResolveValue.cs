@@ -12,23 +12,23 @@ namespace Extensions.Configuration.Tests
         {
             #region TestCaseSources
 
-            private const SubstitutionFormatOptions OPTIONS_1 =
-                SubstitutionFormatOptions.CurlyBracketsDollarEnv;
+            private const ResolverOptions OPTIONS_1 =
+                ResolverOptions.CurlyBracketsDollarEnv;
             private const string OPTIONS_1_PREFIX = "{$env:";
             private const string OPTIONS_1_SUFFIX = "}";
 
-            private const SubstitutionFormatOptions OPTIONS_2 =
-                SubstitutionFormatOptions.DollarCurlyBrackets;
+            private const ResolverOptions OPTIONS_2 =
+                ResolverOptions.DollarCurlyBrackets;
             private const string OPTIONS_2_PREFIX = "${";
             private const string OPTIONS_2_SUFFIX = "}";
 
-            private const SubstitutionFormatOptions OPTIONS_3 =
-                SubstitutionFormatOptions.DollarBrackets;
+            private const ResolverOptions OPTIONS_3 =
+                ResolverOptions.DollarBrackets;
             private const string OPTIONS_3_PREFIX = "$(";
             private const string OPTIONS_3_SUFFIX = ")";
 
-            private const SubstitutionFormatOptions OPTIONS_4 =
-                SubstitutionFormatOptions.Percent;
+            private const ResolverOptions OPTIONS_4 =
+                ResolverOptions.Percent;
             private const string OPTIONS_4_PREFIX = "%";
             private const string OPTIONS_4_SUFFIX = "%";
 
@@ -47,7 +47,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3)]
             [TestCase(OPTIONS_4)]
             public void ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly(
-                SubstitutionFormatOptions options
+                ResolverOptions options
             )
             {
                 // Arrange
@@ -70,7 +70,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3)]
             [TestCase(OPTIONS_4)]
             public void ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly(
-                SubstitutionFormatOptions options
+                ResolverOptions options
             )
             {
                 // Arrange
@@ -93,7 +93,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void OneResolveStep_OneKeyPerStep_ResolvesCorrectly(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 // Arrange
@@ -122,7 +122,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void OneResolveStep_TwoKeysPerStep_ResolvesCorrectly(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 // Arrange
@@ -151,7 +151,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void TwoResolveSteps_OneKeyPerStep_ResolvesCorrectly(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 // Arrange
@@ -186,7 +186,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void InfiniteSteps_OneKeyPerStep_ThrowsInvalidOperationException(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 // Arrange
@@ -208,7 +208,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void InfiniteSteps_TwoKeysPerStep_ThrowsInvalidOperationException(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 // Arrange
@@ -230,7 +230,7 @@ namespace Extensions.Configuration.Tests
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
             public void KeyNotExists_ThrowsKeyNotFoundException(
-                SubstitutionFormatOptions options, string prefix, string suffix
+                ResolverOptions options, string prefix, string suffix
             )
             {
                 Assert.Throws<KeyNotFoundException>(
