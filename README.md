@@ -8,7 +8,7 @@ https://www.nuget.org/packages/Extensions.Configuration/)
 
 # Extensions.Configuration.Resolver
 
-[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](
+[![](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](
 https://www.nuget.org/packages/Extensions.Configuration.Resolver/)
 
 ## Description

@@ -21,8 +21,6 @@
     <tags>configuration extension resolver substitute substitution key value map</tags>
   </metadata>
   <files>
-    <file src="..\src\Extensions.Configuration\bin\release\netstandard2.0\Extensions.Configuration.dll" target="lib\netstandard2.0\Extensions.Configuration.dll" />
-    <file src="..\src\Extensions.Configuration\bin\release\netstandard2.0\Extensions.Configuration.xml" target="lib\netstandard2.0\Extensions.Configuration.xml" />
     <file src="Icon_bright.png" target="Icon.png"/>
   </files>
 </package>
