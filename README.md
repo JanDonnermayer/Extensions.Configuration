@@ -1,4 +1,4 @@
-# Extensions.Configuration
+# Extensions.Configuration.Resolver
 
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](
 https://github.com/JanDonnermayer/Extensions.Configuration/actions)
@@ -29,7 +29,7 @@ which can resolve such references.
 ## Installation
 
 ```powershell
-dotnet add package Extensions.Configuration
+dotnet add package Extensions.Configuration.Resolver
 ```
 
 ## Usage
