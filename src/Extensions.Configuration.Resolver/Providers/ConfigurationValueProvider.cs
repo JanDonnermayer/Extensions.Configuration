@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
-namespace Microsoft.Extensions.Configuration
+namespace Extensions.Configuration.Resolver
 {
     internal class ConfigurationValueProvider : IValueProvider
     {

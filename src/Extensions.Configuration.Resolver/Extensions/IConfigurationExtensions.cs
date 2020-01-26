@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
+using Extensions.Configuration.Resolver;
 
 namespace Microsoft.Extensions.Configuration
 {
