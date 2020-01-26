@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
-namespace Extensions.Configuration.Tests
+namespace Extensions.Configuration.Resolver.Tests
 {
     public class ConfigurationSectionProxyTests
     {
