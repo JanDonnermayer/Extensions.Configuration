@@ -17,12 +17,6 @@ Within system configuration, sometimes references to other configuration entries
 }
 ```
 
-Popular formats for placholders include:
-
-```
-{$env:KEY}, ${KEY}, $(KEY), %KEY%
-```
-
 This package Adds functionality to **Microsoft.Extensions.Configuration**,
 which can resolve such references.
 
@@ -53,4 +47,12 @@ hostbuilder.ConfigureAppConfiguration(config =>
 ```csharp
 var userSettingsResolved = configuration.ResolveValue("UserSettings");
 // Returns e.g.: C:\Users\MyUser\.MyApp\settings.json
+```
+
+## Remarks
+
+Supported placholders:
+
+```
+{$env:KEY}, ${KEY}, $(KEY), %KEY%
 ```

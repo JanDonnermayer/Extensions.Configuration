@@ -2,18 +2,30 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "nuget.pack",
+            "command": "nuget",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/.nuget/Extensions.Configuration.Resolver.0.0.1.nuspec",
+                "-OutputDirectory",
+                "${workspaceFolder}/.nuget"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "dotnet.pack.local",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/src/Extensions.Configuration/Extensions.Configuration.csproj",
+                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release",
                 "-p:PackageVersion=${input:packageVersion}",
                 "-p:AssemblyVersion=${input:packageVersion}",
-                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration"
+                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Resolver"
             ],
             "problemMatcher": "$msCompile"
         }
