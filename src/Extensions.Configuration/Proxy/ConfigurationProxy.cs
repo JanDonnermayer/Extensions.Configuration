@@ -20,19 +20,19 @@ namespace Microsoft.Extensions.Configuration
                 ?? throw new ArgumentNullException(nameof(valueProvider));
         }
 
-        string IConfiguration.this[string key]
+        public string this[string key]
         {
             get => valueProvider(configuration, key);
             set => configuration[key] = value;
         }
 
-        IEnumerable<IConfigurationSection> IConfiguration.GetChildren() =>
+        public IEnumerable<IConfigurationSection> GetChildren() =>
             configuration.GetChildren();
 
-        IChangeToken IConfiguration.GetReloadToken() =>
+        public IChangeToken GetReloadToken() =>
             configuration.GetReloadToken();
 
-        IConfigurationSection IConfiguration.GetSection(string key) =>
-            configuration.GetSection(key);
+        public IConfigurationSection GetSection(string key) =>
+            new ConfigurationSectionProxy(configuration.GetSection(key), valueProvider);
     }
 }

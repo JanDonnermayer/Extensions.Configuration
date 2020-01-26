@@ -1,22 +1,26 @@
-using System;
+﻿using System;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
 namespace Extensions.Configuration.Tests
 {
-    public class ConfigurationResolverProxyTests
+    public class ConfigurationProxyTests
     {
         private IConfiguration configurationMock;
 
+        private IConfigurationSection configurationSectionMock;
+
         private Func<IConfiguration, string, string> valueProviderMock;
 
-        private IConfiguration proxy;
+        private ConfigurationProxy proxy;
+
 
         [SetUp]
         public void Setup()
         {
             this.configurationMock = Mock.Of<IConfiguration>();
+            this.configurationSectionMock = Mock.Of<IConfigurationSection>();
             this.valueProviderMock = Mock.Of<Func<IConfiguration, string, string>>();
             this.proxy = new ConfigurationProxy(configurationMock, valueProviderMock);
         }
@@ -62,6 +66,22 @@ namespace Extensions.Configuration.Tests
 
             // Assert
             Assert.AreEqual(delegateReturnValue, actualReturnValue);
+        }
+
+        [TestCase("val")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void Test_GetSection_ReturnsConfigurationSectionProxy(string sectionKey)
+        {
+            // Arrange
+            Mock.Get(configurationMock)
+                .SetReturnsDefault(configurationSectionMock);
+
+            // Act
+            var section = proxy.GetSection(sectionKey);
+
+            // Assert
+            Assert.IsInstanceOf<ConfigurationSectionProxy>(section);
         }
     }
 }

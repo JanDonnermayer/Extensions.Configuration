@@ -9,7 +9,8 @@ namespace Microsoft.Extensions.Configuration
 
         public ConfigurationValueProvider(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            this.configuration = configuration
+                ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public string GetValue(string key) =>
@@ -32,5 +33,4 @@ namespace Microsoft.Extensions.Configuration
             return false;
         }
     }
-
 }
