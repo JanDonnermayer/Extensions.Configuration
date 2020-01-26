@@ -7,14 +7,27 @@
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/.nuget/Extensions.Configuration.Resolver.0.0.1.nuspec",
+                "${workspaceFolder}/.nuget/Extensions.Configuration.${input:packageVersion}.nuspec",
+                "-OutputDirectory",
+                "${workspaceFolder}/.nuget",
+                "-IncludeReferencedProjects"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "nuget.pack.resolvers",
+            "command": "nuget",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/.nuget/Extensions.Configuration.Resolver.${input:packageVersion}.nuspec",
                 "-OutputDirectory",
                 "${workspaceFolder}/.nuget"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "dotnet.pack.local",
+            "label": "dotnet.pack.local.resolvers",
             "command": "dotnet",
             "type": "process",
             "args": [
