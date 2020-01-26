@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Linq;
+
 
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// The syntax to use for resolvers.
+    /// The key-substitution syntax to use for resolvers.
     /// </summary>
     [Flags]
-    public enum SubstitutionFormatOptions
+    public enum ResolverOptions
     {
         /// <summary>
-        /// No format is recognized.
+        /// No format.
         /// </summary>
         None = 0,
 
@@ -33,6 +32,14 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// %KEY%
         /// </summary>
-        Percent = 1 << 3
+        Percent = 1 << 3,
+
+        /// <summary>
+        /// All other formats.
+        /// </summary>
+        All = CurlyBracketsDollarEnv
+            | DollarCurlyBrackets
+            | DollarBrackets
+            | Percent
     }
 }
