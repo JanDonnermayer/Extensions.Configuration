@@ -56,7 +56,7 @@ var userSettingsResolved = configuration.ResolveValue("UserSettings");
 
 ## Remarks
 
-Supported placholders:
+Supported placeholders:
 
 ```
 {$env:KEY}, ${KEY}, $(KEY), %KEY%
