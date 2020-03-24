@@ -16,7 +16,6 @@ namespace Extensions.Configuration.Resolver.Tests
                 this.configurationMock = Mock.Of<IConfiguration>();
             }
 
-
             [Test]
             public void ProvidableValue_ReturnsTrue()
             {
