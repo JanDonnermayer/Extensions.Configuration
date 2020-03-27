@@ -22,7 +22,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
         }
 
         [Test]
-        public void Test_Tuple_StringPropertiesAdded()
+        public void Test_StringPropertiesAdded()
         {
             // Setup
             const string FIRST_NAME = "Jan";
@@ -44,7 +44,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
         }
 
         [Test]
-        public void Test_Tuple_ValuePropertiesAdded()
+        public void Test_ValuePropertiesAdded()
         {
             // Setup
             const int AGE = 24;
@@ -68,7 +68,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
         }
 
         [Test]
-        public void Test_RecursiveTuple_StringPropertiesAddedRecursively()
+        public void Test_Nested_StringPropertiesAdded()
         {
             // Setup
             const string NAME = "Jan";
@@ -95,7 +95,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
         }
 
         [Test]
-        public void Test_RecursiveObject_ThrowsInvalidOperationException()
+        public void Test_Recursive_ThrowsInvalidOperationException()
         {
             // Setup
             var x = new Box<object>();
