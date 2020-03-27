@@ -1,24 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 
 namespace Extensions.Configuration.Sources.Object
 {
-    internal class DicitionaryConfigurationProvider : ConfigurationProvider
+    internal class ObjectConfigurationProvider : ConfigurationProvider
     {
-        public DicitionaryConfigurationProvider(IEnumerable<KeyValuePair<string, object>> source)
+        public ObjectConfigurationProvider(IEnumerable<KeyValuePair<string, object>> source)
         {
-            throw new NotImplementedException();
+            foreach (var item in source.Fold(o => o.ToString()))
+                Set(item.Key.Aggregate((x, y) => x + ":" + y), item.Value);
         }
     }
-
-    internal class DictionaryConfigurationSource : IConfigurationSource
-    {
-        public IConfigurationProvider Build(IConfigurationBuilder builder)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }

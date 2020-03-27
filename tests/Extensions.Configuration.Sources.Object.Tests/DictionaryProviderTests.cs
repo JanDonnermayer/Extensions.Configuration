@@ -6,9 +6,9 @@ using NUnit.Framework;
 
 namespace Extensions.Configuration.Sources.Object.Tests
 {
-    public class ObjectToDictionaryConverterTests
+    [TestFixture]
+    public class DictionaryProviderTests
     {
-
         [Test]
         public void Test_StringPropertiesAdded()
         {
