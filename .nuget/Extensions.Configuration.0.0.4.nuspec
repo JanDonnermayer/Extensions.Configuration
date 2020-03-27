@@ -15,7 +15,7 @@
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Extensions.Configuration.Resolver" version="0.0.3" exclude="Build,Analyzers" />
-        <dependency id="Extensions.Configuration.Providers.Object" version="0.0.1" exclude="Build,Analyzers" />
+        <dependency id="Extensions.Configuration.Sources.Object" version="0.0.1" exclude="Build,Analyzers" />
       </group>
     </dependencies>
     <tags>configuration extension resolver substitute substitution key value map</tags>

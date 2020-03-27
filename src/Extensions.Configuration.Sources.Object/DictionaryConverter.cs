@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 
-namespace Extensions.Configuration.Providers.Object
+namespace Extensions.Configuration.Sources.Object
 {
     internal static class DictionaryConverter
     {
@@ -59,4 +59,4 @@ namespace Extensions.Configuration.Providers.Object
             return GetDictionaryInternal(source);
         }
     }
-}
+ }

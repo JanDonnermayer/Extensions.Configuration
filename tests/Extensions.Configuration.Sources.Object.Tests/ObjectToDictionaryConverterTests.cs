@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
-namespace Extensions.Configuration.Providers.Object.Tests
+namespace Extensions.Configuration.Sources.Object.Tests
 {
     public class ObjectToDictionaryConverterTests
     {

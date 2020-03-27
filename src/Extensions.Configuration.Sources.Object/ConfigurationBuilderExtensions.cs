@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Providers.Object
+namespace Extensions.Configuration.Sources.Object
 {
     public static class ConfigurationBuilderExtensions
     {
