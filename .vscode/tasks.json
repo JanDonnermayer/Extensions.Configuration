@@ -2,6 +2,54 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "build.resolvers",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release"
+            ]
+        },
+        {
+            "label": "test.resolvers",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release"
+            ]
+        },
+        {
+            "label": "build.builder.objects",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Extensions.Configuration.Builder.Objects/Extensions.Configuration.Builder.Objects.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release"
+            ]
+        },
+        {
+            "label": "test.builder.objects",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release"
+            ]
+        },
+        {
             "label": "nuget.pack",
             "command": "nuget",
             "type": "process",
@@ -24,7 +72,11 @@
                 "-OutputDirectory",
                 "${workspaceFolder}/.nuget"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "build.resolvers",
+                "test.resolvers"
+            ]
         },
         {
             "label": "dotnet.pack.local.resolvers",
@@ -41,8 +93,40 @@
                 "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Resolver"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "nuget.pack.builder.objects",
+            "command": "nuget",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/.nuget/Extensions.Configuration.Builder.Objects.${input:packageVersion}.nuspec",
+                "-OutputDirectory",
+                "${workspaceFolder}/.nuget"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "build.builder.objects",
+                "test.builder.objects"
+            ]
+        },
+        {
+            "label": "dotnet.pack.local.builder.objects",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/src/Extensions.Configuration.Builder.Objects/Extensions.Configuration.Builder.Objects.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c:Release",
+                "-p:PackageVersion=${input:packageVersion}",
+                "-p:AssemblyVersion=${input:packageVersion}",
+                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Builder.Objects"
+            ],
+            "problemMatcher": "$msCompile"
         }
-     ],
+    ],
     "inputs": [
         {
             "type": "promptString",
