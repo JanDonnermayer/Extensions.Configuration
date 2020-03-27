@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Extensions.Configuration.Builder.Objects
 {
-    internal static class ObjectToDictionaryConverter
+    internal static class DictionaryConverter
     {
         private const string CIRCULAR_OBJECT_GRAPH_DETECTED_MESSAGE =
                 "Circular object-graph detected!";

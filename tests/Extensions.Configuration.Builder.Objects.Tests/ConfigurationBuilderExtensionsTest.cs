@@ -6,19 +6,12 @@ using NUnit.Framework;
 
 namespace Extensions.Configuration.Builder.Objects.Tests
 {
-    public class ConfigurationBuilderExtensionsTest
+    public class ObjectToDictionaryConverterTests
     {
-        private IConfigurationBuilder builderMock;
-
-        private IDictionary<string, object> properties;
 
         [SetUp]
         public void Setup()
         {
-            properties = new Dictionary<string, object>();
-            builderMock = Mock.Of<IConfigurationBuilder>(
-                builder => builder.Properties == properties
-            );
         }
 
         [Test]
@@ -37,7 +30,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
             };
 
             // Act
-            builderMock.AddObject(source);
+            var properties = DictionaryConverter.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -61,7 +54,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
             };
 
             // Act
-            builderMock.AddObject(source);
+            var properties = DictionaryConverter.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -88,7 +81,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
             };
 
             // Act
-            builderMock.AddObject(source);
+            var properties = DictionaryConverter.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -103,7 +96,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(
-                () => builderMock.AddObject(x)
+                () => DictionaryConverter.GetDictionary(x)
             );
         }
 
@@ -112,7 +105,7 @@ namespace Extensions.Configuration.Builder.Objects.Tests
         {
             // Setup & Act & Assert
             Assert.DoesNotThrow(
-                () => builderMock.AddObject(new WriteOnlyBox<object>())
+                () => DictionaryConverter.GetDictionary(new WriteOnlyBox<object>())
             );
         }
 
