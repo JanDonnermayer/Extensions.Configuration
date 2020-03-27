@@ -41,9 +41,9 @@ namespace Extensions.Configuration.Sources.Object
                     .GetProperties()
                     .Where(p => p.CanRead)
                     .ToImmutableDictionary(
-                        prop => prop.Name,
-                        prop => GetDictionaryOrValue(
-                            prop.GetValue(source)
+                        p => p.Name,
+                        p => GetDictionaryOrValue(
+                            p.GetValue(source)
                         )
                     );
 
