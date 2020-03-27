@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Extensions.Configuration.Builder.Objects</id>
+    <id>Extensions.Configuration.Providers.Object</id>
     <version>0.0.3</version>
-    <title>Extensions.Configuration.Builder.Objects</title>
+    <title>Extensions.Configuration.Providers.Object</title>
     <authors>Jan Donnermayer</authors>
     <owners>Jan Donnermayer</owners>
     <projectUrl>https://github.com/JanDonnermayer/Extensions.Configuration</projectUrl>
@@ -21,7 +21,7 @@
     <tags>configuration extension resolver substitute substitution key value map</tags>
   </metadata>
   <files>
-    <file src="..\src\Extensions.Configuration.Builder.Objects\bin\release\netstandard2.0\Extensions.Configuration.Builder.Objects.dll" target="lib\netstandard2.0\Extensions.Configuration.Builder.Objects.dll" />
-    <file src="..\src\Extensions.Configuration.Builder.Objects\bin\release\netstandard2.0\Extensions.Configuration.Builder.Objects.xml" target="lib\netstandard2.0\Extensions.Configuration.Builder.Objects.xml" />
+    <file src="..\src\Extensions.Configuration.Providers.Object\bin\release\netstandard2.0\Extensions.Configuration.Providers.Object.dll" target="lib\netstandard2.0\Extensions.Configuration.Providers.Object.dll" />
+    <file src="..\src\Extensions.Configuration.Providers.Object\bin\release\netstandard2.0\Extensions.Configuration.Providers.Object.xml" target="lib\netstandard2.0\Extensions.Configuration.Providers.Object.xml" />
   </files>
 </package>

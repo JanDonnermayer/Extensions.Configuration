@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{703AA087
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Resolver.Tests", "tests\Extensions.Configuration.Resolver.Tests\Extensions.Configuration.Resolver.Tests.csproj", "{0CEF0747-DDA4-4175-88B0-022F0C80A7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Builder.Objects", "src\Extensions.Configuration.Builder.Objects\Extensions.Configuration.Builder.Objects.csproj", "{52CC49B8-74D9-404A-8211-263FF246F691}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Providers.Object", "src\Extensions.Configuration.Providers.Object\Extensions.Configuration.Providers.Object.csproj", "{52CC49B8-74D9-404A-8211-263FF246F691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Builder.Objects.Tests", "tests\Extensions.Configuration.Builder.Objects.Tests\Extensions.Configuration.Builder.Objects.Tests.csproj", "{E7E2F65B-23C5-4840-8FB5-9C5F4BD7D460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Providers.Object.Tests", "tests\Extensions.Configuration.Providers.Object.Tests\Extensions.Configuration.Providers.Object.Tests.csproj", "{E7E2F65B-23C5-4840-8FB5-9C5F4BD7D460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 
-namespace Extensions.Configuration.Builder.Objects
+namespace Extensions.Configuration.Providers.Object
 {
     internal static class DictionaryConverter
     {

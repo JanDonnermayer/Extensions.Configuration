@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Extensions.Configuration.Builder.Objects\Extensions.Configuration.Builder.Objects.csproj" />
+    <ProjectReference Include="..\..\src\Extensions.Configuration.Providers.Object\Extensions.Configuration.Providers.Object.csproj" />
   </ItemGroup>
 
 </Project>
