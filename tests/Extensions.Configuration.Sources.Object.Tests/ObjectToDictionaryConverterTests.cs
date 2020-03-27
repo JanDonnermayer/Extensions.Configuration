@@ -25,7 +25,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
             };
 
             // Act
-            var properties = DictionaryConverter.GetDictionary(source);
+            var properties = DictionaryProvider.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -49,7 +49,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
             };
 
             // Act
-            var properties = DictionaryConverter.GetDictionary(source);
+            var properties = DictionaryProvider.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -76,7 +76,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
             };
 
             // Act
-            var properties = DictionaryConverter.GetDictionary(source);
+            var properties = DictionaryProvider.GetDictionary(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -91,7 +91,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(
-                () => DictionaryConverter.GetDictionary(x)
+                () => DictionaryProvider.GetDictionary(x)
             );
         }
 
@@ -100,7 +100,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
         {
             // Setup & Act & Assert
             Assert.DoesNotThrow(
-                () => DictionaryConverter.GetDictionary(new WriteOnlyBox<object>())
+                () => DictionaryProvider.GetDictionary(new WriteOnlyBox<object>())
             );
         }
 

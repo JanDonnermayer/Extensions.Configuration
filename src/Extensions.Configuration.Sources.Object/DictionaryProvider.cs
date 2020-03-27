@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Extensions.Configuration.Sources.Object
 {
-    internal static class DictionaryConverter
+    internal static class DictionaryProvider
     {
         private const string CIRCULAR_OBJECT_GRAPH_DETECTED_MESSAGE =
                 "Circular object-graph detected!";
@@ -59,4 +59,4 @@ namespace Extensions.Configuration.Sources.Object
             return GetDictionaryInternal(source);
         }
     }
- }
+}

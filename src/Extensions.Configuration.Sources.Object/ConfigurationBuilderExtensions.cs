@@ -22,7 +22,7 @@ namespace Extensions.Configuration.Sources.Object
             if (source is null)
                 throw new ArgumentNullException(nameof(source));
 
-            foreach (var kvp in DictionaryConverter.GetDictionary(source))
+            foreach (var kvp in DictionaryProvider.GetDictionary(source))
                 builder.Properties[kvp.Key] = kvp.Value;
 
             return builder;
