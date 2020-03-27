@@ -9,11 +9,6 @@ namespace Extensions.Configuration.Builder.Objects.Tests
     public class ObjectToDictionaryConverterTests
     {
 
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Test_StringPropertiesAdded()
         {
