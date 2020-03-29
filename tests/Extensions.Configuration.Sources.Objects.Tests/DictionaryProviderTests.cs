@@ -8,7 +8,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
     public class DictionaryProviderTests
     {
         [Test]
-        public void Test_StringPropertiesAdded()
+        public void Test_GetDictionary_ObjectWithStringProperties_PropertiesAdded()
         {
             // Setup
             const string FIRST_NAME = "Jan";
@@ -30,7 +30,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_ValuePropertiesAdded()
+        public void Test_GetDictionary_ObjectWithValueProperties_PropertiesAdded()
         {
             // Setup
             const int AGE = 24;
@@ -54,7 +54,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_Nested_StringPropertiesAdded()
+        public void Test_GetDictionary_NestedObject_StringPropertiesAdded()
         {
             // Setup
             const string NAME = "Jan";
@@ -81,7 +81,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_Recursive_ThrowsInvalidOperationException()
+        public void Test_GetDictionary_RecursiveObject_ThrowsInvalidOperationException()
         {
             // Setup
             var x = new Box<object>();
@@ -94,7 +94,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_WriteOnlyObject_DoesNotThrow()
+        public void Test_GetDictionary_WriteOnlyObject_DoesNotThrow()
         {
             // Setup & Act & Assert
             Assert.DoesNotThrow(

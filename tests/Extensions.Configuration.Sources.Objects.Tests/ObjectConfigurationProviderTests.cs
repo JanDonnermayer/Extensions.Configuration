@@ -7,8 +7,6 @@ namespace Extensions.Configuration.Sources.Objects.Tests
     [TestFixture]
     public class ObjectConfigurationProviderTests
     {
-        private const string KEY_DELIMITER = ":";
-
         [Test]
         public void Test_GetValue_OneNestingLevel()
         {
@@ -21,7 +19,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             // Act
             var result = ObjectConfigurationProvider
                 .From(source)
-                .TryGetValue("K1" + KEY_DELIMITER + "K11");
+                .TryGetValue("K1" + ConfigurationPath.KeyDelimiter + "K11");
 
             // Assert
             Assert.AreEqual((true, "V11"), result);
@@ -45,4 +43,5 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             Assert.AreEqual((true, "V1"), result);
         }
     }
+
 }

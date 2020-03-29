@@ -22,9 +22,6 @@ namespace Extensions.Configuration.Sources.Objects
             );
         }
 
-        public static IConfigurationProvider From(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source) =>
-            new ObjectConfigurationProvider(source);
-
         #region IConfigurationProvider
 
         public IChangeToken GetReloadToken() => new EmptyChangeToken();
@@ -38,5 +35,8 @@ namespace Extensions.Configuration.Sources.Objects
             mut_dict.TryGetValue(key, out value);
 
         #endregion
+
+        public static IConfigurationProvider From(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source) =>
+            new ObjectConfigurationProvider(source);
     }
 }

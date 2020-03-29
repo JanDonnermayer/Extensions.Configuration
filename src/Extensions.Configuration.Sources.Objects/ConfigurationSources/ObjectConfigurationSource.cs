@@ -17,6 +17,13 @@ namespace Extensions.Configuration.Sources.Objects
             this.provider = ObjectConfigurationProvider.From(flatDict);
         }
 
+        #region  IConfigurationSource
+
         public IConfigurationProvider Build(IConfigurationBuilder builder) => provider;
+
+        #endregion
+
+        public static IConfigurationSource From(T source) =>
+            new ObjectConfigurationSource<T>(source);
     }
 }
