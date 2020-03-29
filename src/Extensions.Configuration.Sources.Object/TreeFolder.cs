@@ -16,9 +16,15 @@ namespace Extensions.Configuration.Sources.Object
         /// </Example>
         public static IEnumerable<KeyValuePair<IEnumerable<TKey>, TValue>> Fold<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, object>> source,
-            Func<object, TValue> leafConverter
+            Func<object, TValue> valueConverter
         )
         {
+            if (source is null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (valueConverter is null)
+                throw new ArgumentNullException(nameof(valueConverter));
+
             IEnumerable<KeyValuePair<IEnumerable<TKey>, TValue>> FoldInternal(ImmutableList<TKey> path, object value) =>
                 value switch
                 {
@@ -30,7 +36,7 @@ namespace Extensions.Configuration.Sources.Object
                         new[] {
                             new KeyValuePair<IEnumerable<TKey>, TValue>(
                                 key: path,
-                                value: leafConverter(value)
+                                value: valueConverter(value)
                             )
                         }
                 };
