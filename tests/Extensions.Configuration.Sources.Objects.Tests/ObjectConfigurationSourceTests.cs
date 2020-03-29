@@ -22,7 +22,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             var source = new Box<string>("");
 
             // Act 
-            var result = ObjectConfigurationSource<Box<string>>
+            var result = ObjectConfigurationSource
                 .From(source)
                 .Build(builderMock);
 

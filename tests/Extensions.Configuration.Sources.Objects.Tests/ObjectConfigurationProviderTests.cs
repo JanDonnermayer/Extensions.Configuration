@@ -43,5 +43,4 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             Assert.AreEqual((true, "V1"), result);
         }
     }
-
 }

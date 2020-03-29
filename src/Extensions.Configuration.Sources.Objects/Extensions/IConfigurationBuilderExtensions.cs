@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.Configuration
             if (builder == null)
                 throw new System.ArgumentNullException(nameof(builder));
 
-            return builder.Add(new ObjectConfigurationSource<T>(source));
+            return builder.Add(new GenericObjectConfigurationSource<T>(source));
         }
     }
 }
