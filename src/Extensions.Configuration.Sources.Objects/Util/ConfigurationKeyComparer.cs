@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Extensions.Configuration.Sources.Objects
 {
     /// <summary>
     /// IComparer implementation used to order configuration keys.

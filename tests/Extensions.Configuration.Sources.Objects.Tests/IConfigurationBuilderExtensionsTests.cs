@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 
-namespace Extensions.Configuration.Sources.Object.Tests
+namespace Extensions.Configuration.Sources.Objects.Tests
 {
     [TestFixture]
     public class IConfigurationBuilderExtensionsTests

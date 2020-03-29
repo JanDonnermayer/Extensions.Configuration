@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Extensions.Configuration.Sources.Objects
 {
     internal sealed partial class ObjectConfigurationProvider : IConfigurationProvider
     {

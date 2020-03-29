@@ -31,7 +31,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Extensions.Configuration.Sources.Object/Extensions.Configuration.Sources.Object.csproj",
+                "${workspaceFolder}/src/Extensions.Configuration.Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release"
@@ -104,7 +104,7 @@
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/.nuget/Extensions.Configuration.Sources.Object.${input:packageVersion}.nuspec",
+                "${workspaceFolder}/.nuget/Extensions.Configuration.Sources.Objects.${input:packageVersion}.nuspec",
                 "-OutputDirectory",
                 "${workspaceFolder}/.nuget"
             ],
@@ -120,13 +120,13 @@
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/src/Extensions.Configuration.Sources.Object/Extensions.Configuration.Sources.Object.csproj",
+                "${workspaceFolder}/src/Extensions.Configuration.Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release",
                 "-p:PackageVersion=${input:packageVersion}",
                 "-p:AssemblyVersion=${input:packageVersion}",
-                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Sources.Object"
+                "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Sources.Objects"
             ],
             "problemMatcher": "$msCompile",
             "dependsOn": [

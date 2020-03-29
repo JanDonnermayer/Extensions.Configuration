@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Extensions.Configuration.Sources.Object</id>
+    <id>Extensions.Configuration.Sources.Objects</id>
     <version>0.0.3</version>
-    <title>Extensions.Configuration.Sources.Object</title>
+    <title>Extensions.Configuration.Sources.Objects</title>
     <authors>Jan Donnermayer</authors>
     <owners>Jan Donnermayer</owners>
     <projectUrl>https://github.com/JanDonnermayer/Extensions.Configuration</projectUrl>
@@ -21,7 +21,7 @@
     <tags>configuration extension resolver substitute substitution key value map</tags>
   </metadata>
   <files>
-    <file src="..\src\Extensions.Configuration.Sources.Object\bin\release\netstandard2.0\Extensions.Configuration.Sources.Object.dll" target="lib\netstandard2.0\Extensions.Configuration.Sources.Object.dll" />
-    <file src="..\src\Extensions.Configuration.Sources.Object\bin\release\netstandard2.0\Extensions.Configuration.Sources.Object.xml" target="lib\netstandard2.0\Extensions.Configuration.Sources.Object.xml" />
+    <file src="..\src\Extensions.Configuration.Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" />
+    <file src="..\src\Extensions.Configuration.Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" />
   </files>
 </package>

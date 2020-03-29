@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Extensions.Configuration.Sources.Objects
 {
     internal sealed class ObjectConfigurationSource<T> : IConfigurationSource
     {

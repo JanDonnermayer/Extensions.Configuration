@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Extensions.Configuration.Sources.Objects
 {
     internal partial class ObjectConfigurationProvider
     {

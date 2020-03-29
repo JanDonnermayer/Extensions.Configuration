@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Primitives;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Extensions.Configuration.Sources.Objects
 {
     internal class EmptyChangeToken : IChangeToken
     {

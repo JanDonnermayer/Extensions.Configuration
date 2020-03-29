@@ -1,4 +1,4 @@
-using Extensions.Configuration.Sources.Object;
+using Extensions.Configuration.Sources.Objects;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.Configuration
