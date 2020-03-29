@@ -10,7 +10,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
         private const string KEY_DELIMITER = ":";
 
         [Test]
-        public void Test_OneNestingLevel_ContainsValue()
+        public void Test_GetValue_OneNestingLevel()
         {
             // Arrange
             var source = new Dictionary<IEnumerable<string>, string>()
@@ -28,7 +28,7 @@ namespace Extensions.Configuration.Sources.Object.Tests
         }
 
         [Test]
-        public void Test_ZeroNestingLevels_ContainsValue()
+        public void Test_GetValue_ZeroNestingLevels()
         {
             // Arrange
             var source = new Dictionary<IEnumerable<string>, string>()

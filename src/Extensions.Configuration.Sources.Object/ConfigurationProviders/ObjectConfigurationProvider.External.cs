@@ -23,7 +23,7 @@ namespace Extensions.Configuration.Sources.Object
 
         public IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string parentPath)
         {
-            var prefix = parentPath == null ? string.Empty : parentPath + Constants.KEY_DELIMITER;
+            var prefix = parentPath == null ? string.Empty : parentPath + ConfigurationPath.KeyDelimiter;
 
             return mut_dict
                 .Where(kv => kv.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))

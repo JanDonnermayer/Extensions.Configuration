@@ -17,7 +17,7 @@ namespace Extensions.Configuration.Sources.Object
                 throw new ArgumentNullException(nameof(source));
 
             mut_dict = source.ToImmutableDictionary(
-                item => item.Key.Aggregate((x, y) => x + Constants.KEY_DELIMITER + y),
+                item => item.Key.Aggregate((x, y) => x + ConfigurationPath.KeyDelimiter + y),
                 item => item.Value
             );
         }

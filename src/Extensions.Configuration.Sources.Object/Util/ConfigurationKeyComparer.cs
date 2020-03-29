@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Object
 {
@@ -20,7 +21,7 @@ namespace Extensions.Configuration.Sources.Object
     /// </summary>
     internal class ConfigurationKeyComparer : IComparer<string>
     {
-        private static readonly string[] _keyDelimiterArray = new[] { Constants.KEY_DELIMITER };
+        private static readonly string[] _keyDelimiterArray = new[] { ConfigurationPath.KeyDelimiter };
 
         /// <summary>
         /// The default instance.
