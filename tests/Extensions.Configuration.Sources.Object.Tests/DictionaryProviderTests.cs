@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using Moq;
 using NUnit.Framework;
 
 namespace Extensions.Configuration.Sources.Object.Tests

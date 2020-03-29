@@ -1,6 +1,7 @@
+using Extensions.Configuration.Sources.Object;
 using Microsoft.Extensions.Configuration;
 
-namespace Extensions.Configuration.Sources.Object
+namespace Microsoft.Extensions.Configuration
 {
     public static class IConfigurationBuilderExtensions
     {

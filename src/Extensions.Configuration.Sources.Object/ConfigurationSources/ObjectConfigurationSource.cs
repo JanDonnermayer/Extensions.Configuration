@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Object
 {
-    internal class ObjectConfigurationSource<T> : IConfigurationSource
+    internal sealed class ObjectConfigurationSource<T> : IConfigurationSource
     {
         private readonly IConfigurationProvider provider;
 

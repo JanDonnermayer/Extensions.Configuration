@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
+using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Object.Tests
 {
