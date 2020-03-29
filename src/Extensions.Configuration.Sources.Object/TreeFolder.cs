@@ -9,10 +9,10 @@ namespace Extensions.Configuration.Sources.Object
     {
         /// <summary>
         /// Converts a sequence of trees of <see cref="KeyValuePair"/> into a flat sequence of
-        /// <see cref="KeyValuePair"/>, aggregating the keys into sequences.
+        /// <see cref="KeyValuePair"/> aggregating keys into sequences.
         /// </summary>
         /// <Example>
-        /// { { K1, { K11, V1 }, { K2, V2 } } => { { [ K1, K11 ], V1 }, { K2, V2 } }
+        /// [ { K1, { K11, V1 } }, { K2, V2 } ] => [ { [ K1, K11 ], V1 }, { [ K2 ], V2 } ]
         /// </Example>
         public static IEnumerable<KeyValuePair<IEnumerable<TKey>, TValue>> Fold<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, object>> source,
