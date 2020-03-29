@@ -26,7 +26,7 @@
             ]
         },
         {
-            "label": "build.builder.objects",
+            "label": "build.sources",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "label": "test.builder.objects",
+            "label": "test.sources",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -92,10 +92,14 @@
                 "-p:AssemblyVersion=${input:packageVersion}",
                 "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Resolver"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "build.resolvers",
+                "test.resolvers"
+            ]
         },
         {
-            "label": "nuget.pack.builder.objects",
+            "label": "nuget.pack.sources",
             "command": "nuget",
             "type": "process",
             "args": [
@@ -106,12 +110,12 @@
             ],
             "problemMatcher": "$msCompile",
             "dependsOn": [
-                "build.builder.objects",
-                "test.builder.objects"
+                "build.sources",
+                "test.sources"
             ]
         },
         {
-            "label": "dotnet.pack.local.builder.objects",
+            "label": "dotnet.pack.local.sources",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -124,7 +128,11 @@
                 "-p:AssemblyVersion=${input:packageVersion}",
                 "-o:C:/Users/${env:USERNAME}/.nuget/packages.local/Extensions.Configuration.Sources.Object"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "build.sources",
+                "test.sources"
+            ]
         }
     ],
     "inputs": [

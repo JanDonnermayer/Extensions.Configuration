@@ -1,9 +1,8 @@
-﻿using System;
 using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Object
 {
-    public static class ConfigurationBuilderExtensions
+    public static class IConfigurationBuilderExtensions
     {
         /// <summary>
         /// Adds the properties of the specified <paramref name="source"/>
@@ -14,19 +13,15 @@ namespace Extensions.Configuration.Sources.Object
         /// <param name="source">The object from which the properties are obtained.</param>
         /// <typeparam name="T">The type of the specified <paramref name="source"/></typeparam>
         /// <returns>The specified <see cref="IConfigurationBuilder"/> for chaining.</returns>
+        /// <Example>
+        /// builder.AddObject( ("key", "value") );
+        /// <Example>
         public static IConfigurationBuilder AddObject<T>(this IConfigurationBuilder builder, T source)
         {
-            if (builder is null)
-                throw new ArgumentNullException(nameof(builder));
+            if (builder == null)
+                throw new System.ArgumentNullException(nameof(builder));
 
-            if (source is null)
-                throw new ArgumentNullException(nameof(source));
-
-            foreach (var kvp in DictionaryProvider.GetDictionary(source))
-                builder.Properties[kvp.Key] = kvp.Value;
-
-            return builder;
+            return builder.Add(new ObjectConfigurationSource<T>(source));
         }
     }
-
 }
