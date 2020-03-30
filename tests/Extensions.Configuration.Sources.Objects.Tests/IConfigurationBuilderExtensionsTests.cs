@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
@@ -41,6 +42,18 @@ namespace Extensions.Configuration.Sources.Objects.Tests
                 () => builderMock.AddEntries(
                     ("key1", "value1"),
                     ("key2", "value2")
+                )
+            );
+        }
+
+        [Test]
+        public void Test_AddEntries_Duplicate_ThrowsArgumentException()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(
+                () => builderMock.AddEntries(
+                    ("key", "value1"),
+                    ("key", "value2")
                 )
             );
         }
