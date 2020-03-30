@@ -11,17 +11,6 @@ namespace Extensions.Configuration.Sources.Objects
     {
         private ImmutableDictionary<string, string> mut_dict;
 
-        public MapConfigurationProvider(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source)
-        {
-            if (source is null)
-                throw new ArgumentNullException(nameof(source));
-
-            mut_dict = source.ToImmutableDictionary(
-                item => item.Key.Aggregate((x, y) => x + ConfigurationPath.KeyDelimiter + y),
-                item => item.Value
-            );
-        }
-
         public MapConfigurationProvider(IEnumerable<KeyValuePair<string, string>> source)
         {
             if (source is null)
@@ -46,9 +35,6 @@ namespace Extensions.Configuration.Sources.Objects
             mut_dict.TryGetValue(key, out value);
 
         #endregion
-
-        public static IConfigurationProvider From(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source) =>
-            new MapConfigurationProvider(source);
 
         public static IConfigurationProvider From(IEnumerable<KeyValuePair<string, string>> source) =>
             new MapConfigurationProvider(source);

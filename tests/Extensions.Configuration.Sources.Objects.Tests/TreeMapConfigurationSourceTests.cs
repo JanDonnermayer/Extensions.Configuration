@@ -1,11 +1,12 @@
+using NUnit.Framework;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Extensions.Configuration.Sources.Objects.Tests
 {
     [TestFixture]
-    public class ObjectConfigurationSourceTests
+    public class TreeMapConfigurationSourceTests
     {
         private IConfigurationBuilder builderMock;
 
@@ -19,17 +20,18 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         public void Test_Build_ReturnsConfigurationProvider()
         {
             // Arrange
-            var source = new Box<string>("VALUE");
+            var source = new Dictionary<string, object>()
+            {
+                { "K1",  "V1" }
+            };
 
             // Act 
-            var result = ObjectConfigurationSource
+            var result = TreeMapConfigurationSource
                 .From(source)
                 .Build(builderMock);
 
             // Assert
             Assert.IsNotNull(result);
         }
-
-        private class Box<T> { public T Value { get; } public Box(T value) => Value = value; }
     }
 }

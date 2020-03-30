@@ -3,30 +3,14 @@ using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Objects
 {
-    internal sealed class MapConfigurationSource : IConfigurationSource
+    internal static class MapConfigurationSource
     {
-        private readonly IConfigurationProvider provider;
-
-        public MapConfigurationSource(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source)
+        public static IConfigurationSource From(IEnumerable<KeyValuePair<string, string>> entries)
         {
-            if (source is null)
-                throw new System.ArgumentNullException(nameof(source));
+            if (entries is null)
+                throw new System.ArgumentNullException(nameof(entries));
 
-            this.provider = MapConfigurationProvider.From(source);
+            return ConfigurationSource.From(MapConfigurationProvider.From(entries));
         }
-
-        public MapConfigurationSource(IEnumerable<KeyValuePair<string, string>> source)
-        {
-            if (source is null)
-                throw new System.ArgumentNullException(nameof(source));
-
-            this.provider = MapConfigurationProvider.From(source);
-        }
-
-        #region  IConfigurationSource
-
-        public IConfigurationProvider Build(IConfigurationBuilder builder) => provider;
-
-        #endregion
     }
 }

@@ -23,7 +23,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             };
 
             // Act
-            var properties = DictionaryProvider.GetDictionary(source);
+            var properties = TreeMapProvider.GetTreeMap(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -47,7 +47,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             };
 
             // Act
-            var properties = DictionaryProvider.GetDictionary(source);
+            var properties = TreeMapProvider.GetTreeMap(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -74,7 +74,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             };
 
             // Act
-            var properties = DictionaryProvider.GetDictionary(source);
+            var properties = TreeMapProvider.GetTreeMap(source);
 
             // Assert
             Assert.AreEqual(expectedProperties, properties);
@@ -89,7 +89,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(
-                () => DictionaryProvider.GetDictionary(x)
+                () => TreeMapProvider.GetTreeMap(x)
             );
         }
 
@@ -98,7 +98,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         {
             // Setup & Act & Assert
             Assert.DoesNotThrow(
-                () => DictionaryProvider.GetDictionary(new WriteOnlyBox<object>())
+                () => TreeMapProvider.GetTreeMap(new WriteOnlyBox<object>())
             );
         }
 

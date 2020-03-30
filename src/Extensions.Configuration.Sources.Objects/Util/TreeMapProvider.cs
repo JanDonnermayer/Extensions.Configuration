@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Extensions.Configuration.Sources.Objects
 {
-    internal static class DictionaryProvider
+    internal static class TreeMapProvider
     {
         private const string CIRCULAR_OBJECT_GRAPH_DETECTED_MESSAGE =
                 "Circular object-graph detected!";
@@ -17,7 +17,7 @@ namespace Extensions.Configuration.Sources.Objects
 
         private const int OBJECT_COUNT_THRESHOLD = 10000;
 
-        public static IReadOnlyDictionary<string, object> GetDictionary<T>(T source)
+        public static IReadOnlyDictionary<string, object> GetTreeMap<T>(T source)
         {
             var visited = new HashSet<object>();
 
