@@ -19,7 +19,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         public void Test_Build_ReturnsObjectConfigurationProvider()
         {
             // Arrange
-            var source = new Box<string>("");
+            var source = new Box<string>("VALUE");
 
             // Act 
             var result = ObjectConfigurationSource
