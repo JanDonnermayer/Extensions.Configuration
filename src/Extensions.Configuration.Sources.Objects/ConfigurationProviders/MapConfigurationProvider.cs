@@ -22,6 +22,17 @@ namespace Extensions.Configuration.Sources.Objects
             );
         }
 
+        public MapConfigurationProvider(IEnumerable<KeyValuePair<string, string>> source)
+        {
+            if (source is null)
+                throw new ArgumentNullException(nameof(source));
+
+            mut_dict = source.ToImmutableDictionary(
+                item => item.Key,
+                item => item.Value
+            );
+        }
+
         #region IConfigurationProvider
 
         public IChangeToken GetReloadToken() => new EmptyChangeToken();
@@ -37,6 +48,9 @@ namespace Extensions.Configuration.Sources.Objects
         #endregion
 
         public static IConfigurationProvider From(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source) =>
+            new MapConfigurationProvider(source);
+
+        public static IConfigurationProvider From(IEnumerable<KeyValuePair<string, string>> source) =>
             new MapConfigurationProvider(source);
     }
 }
