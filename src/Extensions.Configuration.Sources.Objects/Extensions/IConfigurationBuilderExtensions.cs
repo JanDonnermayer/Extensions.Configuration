@@ -24,5 +24,6 @@ namespace Microsoft.Extensions.Configuration
 
             return builder.Add(new GenericObjectConfigurationSource<T>(source));
         }
+
     }
 }

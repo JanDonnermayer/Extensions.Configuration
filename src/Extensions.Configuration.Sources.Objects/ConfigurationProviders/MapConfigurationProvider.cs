@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Objects
 {
-    internal sealed partial class ObjectConfigurationProvider : IConfigurationProvider
+    internal sealed partial class MapConfigurationProvider : IConfigurationProvider
     {
         private ImmutableDictionary<string, string> mut_dict;
 
-        public ObjectConfigurationProvider(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source)
+        public MapConfigurationProvider(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source)
         {
             if (source is null)
                 throw new ArgumentNullException(nameof(source));
@@ -37,6 +37,6 @@ namespace Extensions.Configuration.Sources.Objects
         #endregion
 
         public static IConfigurationProvider From(IEnumerable<KeyValuePair<IEnumerable<string>, string>> source) =>
-            new ObjectConfigurationProvider(source);
+            new MapConfigurationProvider(source);
     }
 }

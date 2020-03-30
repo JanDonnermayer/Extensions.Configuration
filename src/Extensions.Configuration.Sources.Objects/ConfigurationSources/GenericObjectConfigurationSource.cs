@@ -14,7 +14,7 @@ namespace Extensions.Configuration.Sources.Objects
 
             var treeDict = DictionaryProvider.GetDictionary(source);
             var flatDict = treeDict.Fold(x => x.ToString());
-            this.provider = ObjectConfigurationProvider.From(flatDict);
+            this.provider = MapConfigurationProvider.From(flatDict);
         }
 
         #region  IConfigurationSource

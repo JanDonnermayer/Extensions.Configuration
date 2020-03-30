@@ -17,7 +17,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             };
 
             // Act
-            var result = ObjectConfigurationProvider
+            var result = MapConfigurationProvider
                 .From(source)
                 .TryGetValue("K1" + ConfigurationPath.KeyDelimiter + "K11");
 
@@ -35,7 +35,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
             };
 
             // Act
-            var result = ObjectConfigurationProvider
+            var result = MapConfigurationProvider
                 .From(source)
                 .TryGetValue("K1");
 

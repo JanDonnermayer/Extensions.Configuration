@@ -27,7 +27,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
                 .Build(builderMock);
 
             // Assert
-            Assert.IsInstanceOf<ObjectConfigurationProvider>(result);
+            Assert.IsInstanceOf<MapConfigurationProvider>(result);
         }
 
         private class Box<T> { public T Value { get; } public Box(T value) => Value = value; }

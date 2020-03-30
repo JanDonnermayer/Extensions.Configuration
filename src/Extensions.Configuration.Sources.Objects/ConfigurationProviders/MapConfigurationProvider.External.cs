@@ -17,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Objects
 {
-    internal partial class ObjectConfigurationProvider
+    internal partial class MapConfigurationProvider
     {
         #region IConfigurationProvider
 
