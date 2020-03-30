@@ -27,10 +27,10 @@ namespace Microsoft.Extensions.Configuration
             if (builder == null)
                 throw new System.ArgumentNullException(nameof(builder));
 
-            return builder.Add(ObjectConfigurationSource.From(source));
+            return builder.Add(ObjectConfigurationSource.Of(source));
         }
 
-        public static IConfigurationBuilder AddValue(
+        public static IConfigurationBuilder AddEntry(
             this IConfigurationBuilder builder,
             string key,
             string value
@@ -42,9 +42,9 @@ namespace Microsoft.Extensions.Configuration
             return builder.Add(MapSource(Of(KeyValuePair(key, value))));
         }
 
-        public static IConfigurationBuilder AddValues(
+        public static IConfigurationBuilder AddEntries(
             this IConfigurationBuilder builder,
-            IEnumerable<(string key, string value)> entries
+            IEnumerable<(string, string)> entries
         )
         {
             if (builder == null)
@@ -56,29 +56,29 @@ namespace Microsoft.Extensions.Configuration
             return builder.Add(MapSource(KeyValuePairs(entries)));
         }
 
-        public static IConfigurationBuilder AddValues(
+        public static IConfigurationBuilder AddEntries(
             this IConfigurationBuilder builder,
-            (string key, string value) entry,
-            params (string key, string value)[] entries
+            (string, string) entry,
+            params (string, string)[] entries
         )
         {
             if (builder == null)
                 throw new System.ArgumentNullException(nameof(builder));
 
-            return builder.AddValues(Of(entry).Concat(entries));
+            return builder.AddEntries(Of(entry).Concat(entries));
         }
 
-        private static KeyValuePair<string, string> KeyValuePair(string key, string value) =>
-            new KeyValuePair<string, string>(key, value);
+        private static KeyValuePair<T, V> KeyValuePair<T, V>(T key, V value) =>
+            new KeyValuePair<T, V>(key, value);
 
-        private static KeyValuePair<string, string> KeyValuePair((string key, string value) entry) =>
+        private static KeyValuePair<T, V> KeyValuePair<T, V>((T key, V value) entry) =>
             KeyValuePair(entry.key, entry.value);
 
-        private static IEnumerable<KeyValuePair<string, string>> KeyValuePairs(IEnumerable<(string key, string value)> entries) =>
-            entries.Select(KeyValuePair);
+        private static IEnumerable<KeyValuePair<T, V>> KeyValuePairs<T, V>(IEnumerable<(T key, V value)> entries) =>
+            entries.Select(KeyValuePair<T, V>);
 
         private static IConfigurationSource MapSource(IEnumerable<KeyValuePair<string, string>> entries) =>
-            MapConfigurationSource.From(entries);
+            MapConfigurationSource.Of(entries);
 
         private static IEnumerable<T> Of<T>(T element) => new[] { element };
     }

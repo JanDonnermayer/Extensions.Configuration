@@ -18,7 +18,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
 
             // Act
             var result = MapConfigurationProvider
-                .From(source)
+                .Of(source)
                 .TryGetValue("K1");
 
             // Assert

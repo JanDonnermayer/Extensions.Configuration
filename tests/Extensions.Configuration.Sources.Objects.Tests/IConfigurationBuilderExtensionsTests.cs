@@ -16,23 +16,33 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_AddObject_AddsConfigurationSource()
+        public void Test_AddObject_DoesNotThrow()
         {
-            // Arrange 
-            var obj = ("key", "value");
+            // Act & Assert
+            Assert.DoesNotThrow(
+                () => builderMock.AddObject(("value1", "value2"))
+            );
+        }
 
-            // Act
-            builderMock.AddObject(obj);
+        [Test]
+        public void Test_AddEntry_DoesNotThrow()
+        {
+            // Act & Assert
+            Assert.DoesNotThrow(
+                () => builderMock.AddEntry("key", "value")
+            );
+        }
 
-            // Assert
-            Mock.Get(builderMock)
-                .Verify(
-                    b => b.Add(It.IsAny<IConfigurationSource>()),
-                    Times.Once
-                );
-
-            Mock.Get(builderMock)
-                .VerifyNoOtherCalls();
+        [Test]
+        public void Test_AddEntries_DoesNotThrow()
+        {
+            // Act & Assert
+            Assert.DoesNotThrow(
+                () => builderMock.AddEntries(
+                    ("key1", "value1"),
+                    ("key2", "value2")
+                )
+            );
         }
     }
 }

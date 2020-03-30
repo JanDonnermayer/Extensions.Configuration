@@ -6,7 +6,7 @@ namespace Extensions.Configuration.Sources.Objects
 {
     internal static class TreeMapConfigurationSource
     {
-        public static IConfigurationSource From(IEnumerable<KeyValuePair<string, object>> treeEntries)
+        public static IConfigurationSource Of(IEnumerable<KeyValuePair<string, object>> treeEntries)
         {
             if (treeEntries is null)
                 throw new System.ArgumentNullException(nameof(treeEntries));
@@ -20,7 +20,7 @@ namespace Extensions.Configuration.Sources.Objects
                     )
                 );
 
-            return MapConfigurationSource.From(entries);
+            return MapConfigurationSource.Of(entries);
         }
     }
 }

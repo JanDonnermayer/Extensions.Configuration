@@ -5,10 +5,10 @@ using NUnit.Framework;
 namespace Extensions.Configuration.Sources.Objects.Tests
 {
     [TestFixture]
-    public class DictionaryProviderTests
+    public class TreeMapProviderTests
     {
         [Test]
-        public void Test_GetDictionary_ObjectWithStringProperties_PropertiesAdded()
+        public void Test_GetTreeMap_ObjectWithStringProperties_PropertiesAdded()
         {
             // Setup
             const string FIRST_NAME = "Jan";
@@ -30,7 +30,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_GetDictionary_ObjectWithValueProperties_PropertiesAdded()
+        public void Test_GetTreeMap_ObjectWithValueProperties_PropertiesAdded()
         {
             // Setup
             const int AGE = 24;
@@ -54,7 +54,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_GetDictionary_NestedObject_StringPropertiesAdded()
+        public void Test_GetTreeMap_NestedObject_StringPropertiesAdded()
         {
             // Setup
             const string NAME = "Jan";
@@ -81,7 +81,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_GetDictionary_RecursiveObject_ThrowsInvalidOperationException()
+        public void Test_GetTreeMap_RecursiveObject_ThrowsInvalidOperationException()
         {
             // Setup
             var x = new Box<object>();
@@ -94,7 +94,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_GetDictionary_WriteOnlyObject_DoesNotThrow()
+        public void Test_GetTreeMap_WriteOnlyObject_DoesNotThrow()
         {
             // Setup & Act & Assert
             Assert.DoesNotThrow(
