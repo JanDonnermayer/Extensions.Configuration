@@ -6,12 +6,12 @@ namespace Extensions.Configuration.Sources.Objects
 {
     internal static class TreeMapConfigurationSource
     {
-        public static IConfigurationSource From(IEnumerable<KeyValuePair<string, object>> entries)
+        public static IConfigurationSource From(IEnumerable<KeyValuePair<string, object>> treeEntries)
         {
-            if (entries is null)
-                throw new System.ArgumentNullException(nameof(entries));
+            if (treeEntries is null)
+                throw new System.ArgumentNullException(nameof(treeEntries));
 
-            var flatEntries = entries
+            var entries = treeEntries
                 .Fold(x => x.ToString())
                 .Select(kvp =>
                     new KeyValuePair<string, string>(
@@ -20,7 +20,7 @@ namespace Extensions.Configuration.Sources.Objects
                     )
                 );
 
-            return MapConfigurationSource.From(flatEntries);
+            return MapConfigurationSource.From(entries);
         }
     }
 }
