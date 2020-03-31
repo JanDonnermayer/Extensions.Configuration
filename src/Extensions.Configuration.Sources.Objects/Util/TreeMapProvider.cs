@@ -26,7 +26,7 @@ namespace Extensions.Configuration.Sources.Objects
                 if (node is null)
                     throw new ArgumentNullException(nameof(node));
 
-                if (!visited.Add(node))
+                if (!visited!.Add(node))
                     throw new InvalidOperationException(CIRCULAR_OBJECT_GRAPH_DETECTED_MESSAGE);
 
                 if (visited.Count > OBJECT_COUNT_THRESHOLD)
@@ -47,7 +47,7 @@ namespace Extensions.Configuration.Sources.Objects
                         )
                     );
 
-            static object GetDictionaryOrValue(object source) =>
+            object GetDictionaryOrValue(object source) =>
                 source switch
                 {
                     null => throw new ArgumentNullException(nameof(source)),
