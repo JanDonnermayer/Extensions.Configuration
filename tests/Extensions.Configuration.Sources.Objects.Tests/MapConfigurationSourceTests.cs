@@ -27,7 +27,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
 
             // Act 
             var result = MapConfigurationSource
-                .Of(source)
+                .FromEntries(source)
                 .Build(builderMock);
 
             // Assert

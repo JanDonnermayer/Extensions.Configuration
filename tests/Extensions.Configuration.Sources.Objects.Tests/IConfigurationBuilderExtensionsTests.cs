@@ -24,38 +24,5 @@ namespace Extensions.Configuration.Sources.Objects.Tests
                 () => builderMock.AddObject(("value1", "value2"))
             );
         }
-
-        [Test]
-        public void Test_AddEntry_DoesNotThrow()
-        {
-            // Act & Assert
-            Assert.DoesNotThrow(
-                () => builderMock.AddEntry("key", "value")
-            );
-        }
-
-        [Test]
-        public void Test_AddEntries_DoesNotThrow()
-        {
-            // Act & Assert
-            Assert.DoesNotThrow(
-                () => builderMock.AddEntries(
-                    ("key1", "value1"),
-                    ("key2", "value2")
-                )
-            );
-        }
-
-        [Test]
-        public void Test_AddEntries_Duplicate_ThrowsArgumentException()
-        {
-            // Act & Assert
-            Assert.Throws<ArgumentException>(
-                () => builderMock.AddEntries(
-                    ("key", "value1"),
-                    ("key", "value2")
-                )
-            );
-        }
     }
 }

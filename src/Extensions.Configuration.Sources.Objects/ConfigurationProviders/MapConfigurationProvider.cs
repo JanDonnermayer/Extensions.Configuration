@@ -36,7 +36,10 @@ namespace Extensions.Configuration.Sources.Objects
 
         #endregion
 
-        public static IConfigurationProvider Of(IEnumerable<KeyValuePair<string, string>> source) =>
-            new MapConfigurationProvider(source);
+        public static IConfigurationProvider FromEntries(IEnumerable<KeyValuePair<string, string>> entries) =>
+            new MapConfigurationProvider(entries);
+
+        public static IConfigurationProvider FromEntries(IEnumerable<(string, string)> entries) =>
+            FromEntries(entries.Select(e => new KeyValuePair<string, string>(e.Item1, e.Item2)));
     }
 }

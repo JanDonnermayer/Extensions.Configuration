@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Sources.Objects
@@ -10,9 +12,17 @@ namespace Extensions.Configuration.Sources.Objects
             if (source is null)
                 throw new ArgumentNullException(nameof(source));
 
-            var treeMap = TreeMapProvider.GetTreeMap(source);
+            var entries = TreeMapProvider
+                .GetTreeMap(source)
+                .Fold(x => x.ToString())
+                .Select(kvp =>
+                    new KeyValuePair<string, string>(
+                        kvp.Key.Aggregate((x, y) => x + ConfigurationPath.KeyDelimiter + y),
+                        kvp.Value
+                    )
+                );
 
-            return TreeMapConfigurationSource.Of(treeMap);
+            return MapConfigurationSource.FromEntries(entries);
         }
     }
 }

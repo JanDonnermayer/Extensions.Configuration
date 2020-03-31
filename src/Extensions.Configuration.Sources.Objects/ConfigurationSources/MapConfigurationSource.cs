@@ -5,14 +5,14 @@ namespace Extensions.Configuration.Sources.Objects
 {
     internal static class MapConfigurationSource
     {
-        public static IConfigurationSource Of(IEnumerable<KeyValuePair<string, string>> entries)
+        public static IConfigurationSource FromEntries(IEnumerable<KeyValuePair<string, string>> entries)
         {
             if (entries is null)
                 throw new System.ArgumentNullException(nameof(entries));
 
-            var provider = MapConfigurationProvider.Of(entries);
+            var provider = MapConfigurationProvider.FromEntries(entries);
 
-            return ConfigurationSource.Of(provider);
+            return ConfigurationSource.FromProvider(provider);
         }
     }
 }

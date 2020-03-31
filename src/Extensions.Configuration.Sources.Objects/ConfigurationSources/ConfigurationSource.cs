@@ -15,7 +15,7 @@ namespace Extensions.Configuration.Sources.Objects
 
         #endregion
 
-        public static IConfigurationSource Of(IConfigurationProvider provider) =>
+        public static IConfigurationSource FromProvider(IConfigurationProvider provider) =>
             new ConfigurationSource(provider);
     }
 }
