@@ -63,9 +63,8 @@ namespace Microsoft.Extensions.Configuration
                     .TryGetValue(key, out value);
 
         /// <summary>
-        /// Creates an instance of <see cref="IConfiguration"/>,
-        /// that accesses the specified instance <paranref name="configuration"/>,
-        /// recursively resolving placeholders according to specified <paramref name="options"/>.
+        /// Creates an instance of <see cref="IConfiguration"/>, wherein
+        /// entries with placeholders are resolved according to specified <paramref name="options"/>.
         /// <param name="configuration">
         /// The <paramref name="configuration"/> providing the values.
         /// </param>
