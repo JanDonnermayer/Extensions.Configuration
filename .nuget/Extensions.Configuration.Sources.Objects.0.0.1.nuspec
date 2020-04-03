@@ -9,8 +9,8 @@
     <projectUrl>https://github.com/JanDonnermayer/Extensions.Configuration</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Functionality to add objects to configuration builders for Microsoft.Extensions.Configuration.</description>
-    <summary>Functionality to add objects to configuration builders for Microsoft.Extensions.Configuration.</summary>
+    <description>Functionality to add object as configuration source for Microsoft.Extensions.Configuration.</description>
+    <summary>Functionality to add object as configuration source for Microsoft.Extensions.Configuration.</summary>
     <repository type="git" url="https://github.com/JanDonnermayer/Extensions.Configuration" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
@@ -18,7 +18,7 @@
         <dependency id="System.Collections.Immutable" version="1.7.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>
-    <tags>configuration extension resolver substitute substitution key value map</tags>
+    <tags></tags>
   </metadata>
   <files>
     <file src="..\src\Extensions.Configuration.Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" />
