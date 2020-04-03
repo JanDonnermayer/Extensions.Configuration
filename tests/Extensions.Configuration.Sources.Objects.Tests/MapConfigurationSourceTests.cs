@@ -2,6 +2,7 @@ using NUnit.Framework;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using System.Collections.Generic;
+using System;
 
 namespace Extensions.Configuration.Sources.Objects.Tests
 {
@@ -17,7 +18,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_Build_ReturnsConfigurationProvider()
+        public void Test_FromDictionary_Build_ReturnsConfigurationProvider()
         {
             // Arrange
             var source = new Dictionary<string, string>()

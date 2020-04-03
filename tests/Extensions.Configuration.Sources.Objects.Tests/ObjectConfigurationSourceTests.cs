@@ -23,7 +23,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
 
             // Act 
             var result = ObjectConfigurationSource
-                .Of(source)
+                .FromObject(source)
                 .Build(builderMock);
 
             // Assert

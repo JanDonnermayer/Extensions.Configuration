@@ -8,12 +8,30 @@ namespace Extensions.Configuration.Sources.Objects.Tests
     public class MapConfigurationProviderTests
     {
         [Test]
-        public void Test_GetValue()
+        public void Test_FromKVPEntries_TryGetValue()
         {
             // Arrange
             var source = new Dictionary<string, string>()
             {
                 { "K1",  "V1" }
+            };
+
+            // Act
+            var result = MapConfigurationProvider
+                .FromEntries(source)
+                .TryGetValue("K1");
+
+            // Assert
+            Assert.AreEqual((true, "V1"), result);
+        }
+
+        [Test]
+        public void Test_FromTupleEntries_TryGetValue()
+        {
+            // Arrange
+            var source = new []
+            {
+                ("K1",  "V1")
             };
 
             // Act

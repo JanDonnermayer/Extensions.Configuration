@@ -7,7 +7,7 @@ namespace Extensions.Configuration.Sources.Objects
 {
     internal static class ObjectConfigurationSource
     {
-        public static IConfigurationSource Of<T>(T source)
+        public static IConfigurationSource FromObject<T>(T source)
         {
             if (source is null)
                 throw new ArgumentNullException(nameof(source));
