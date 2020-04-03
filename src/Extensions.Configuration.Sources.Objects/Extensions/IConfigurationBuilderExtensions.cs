@@ -24,6 +24,9 @@ namespace Microsoft.Extensions.Configuration
             if (builder == null)
                 throw new System.ArgumentNullException(nameof(builder));
 
+            if (source == null)
+                throw new System.ArgumentNullException(nameof(source));
+
             return builder.Add(ObjectConfigurationSource.FromObject(source));
         }
     }
