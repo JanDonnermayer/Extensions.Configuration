@@ -16,7 +16,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         }
 
         [Test]
-        public void Test_Build_ReturnsConfigurationProvider()
+        public void Test_FromObject_Build_ReturnsConfigurationProvider()
         {
             // Arrange
             var source = new Box<string>("VALUE");
