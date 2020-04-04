@@ -9,7 +9,7 @@ namespace Extensions.Configuration.Resolver
         /// <paramref name="provider"/>.
         /// </summary>
         public static ResolverValueProvider ToResolverValueProvider(
-            this IValueProvider provider, ResolverOptions options) =>
+            this IValueProvider provider, SubstitutionOptions options) =>
                 new ResolverValueProvider(provider, options);
     }
 }

@@ -9,18 +9,18 @@ namespace Microsoft.Extensions.Configuration
         /// Converts the specified <paramref name="options"/> to their corresponding
         /// Regular Expressions.
         /// </summary>
-        public static IEnumerable<string> ToRegexPatterns(this ResolverOptions options)
+        public static IEnumerable<string> ToRegexPatterns(this SubstitutionOptions options)
         {
-            if ((options & ResolverOptions.CurlyBracketsDollarEnv) != 0)
+            if ((options & SubstitutionOptions.CurlyBracketsDollarEnv) != 0)
                 yield return @"\{\$env:([\s\S]*?)\}";
 
-            if ((options & ResolverOptions.DollarCurlyBrackets) != 0)
+            if ((options & SubstitutionOptions.DollarCurlyBrackets) != 0)
                 yield return @"\$\{([\s\S]*?)\}";
 
-            if ((options & ResolverOptions.DollarBrackets) != 0)
+            if ((options & SubstitutionOptions.DollarBrackets) != 0)
                 yield return @"\$\(([\s\S]*?)\)";
 
-            if ((options & ResolverOptions.Percent) != 0)
+            if ((options & SubstitutionOptions.Percent) != 0)
                 yield return @"\%([\s\S]*?)\%";
         }
     }

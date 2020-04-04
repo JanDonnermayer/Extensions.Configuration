@@ -6,7 +6,7 @@ namespace Microsoft.Extensions.Configuration
     /// The key-substitution syntax to use for configuration resolvers.
     /// </summary>
     [Flags]
-    public enum ResolverOptions
+    public enum SubstitutionOptions
     {
         /// <summary>
         /// No format.

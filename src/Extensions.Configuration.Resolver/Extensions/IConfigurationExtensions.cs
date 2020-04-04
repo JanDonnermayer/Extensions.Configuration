@@ -31,7 +31,7 @@ namespace Microsoft.Extensions.Configuration
         /// </param>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
-            ResolverOptions options = ResolverOptions.All) =>
+            SubstitutionOptions options = SubstitutionOptions.All) =>
                 configuration
                     .ToConfigurationValueProvider()
                     .ToResolverValueProvider(options)
@@ -56,7 +56,7 @@ namespace Microsoft.Extensions.Configuration
         /// The options used in the resolver process.
         /// </param>
         public static bool TryResolveValue(this IConfiguration configuration, string key,
-            out string? value, ResolverOptions options = ResolverOptions.All) =>
+            out string? value, SubstitutionOptions options = SubstitutionOptions.All) =>
                 configuration
                     .ToConfigurationValueProvider()
                     .ToResolverValueProvider(options)
@@ -74,7 +74,7 @@ namespace Microsoft.Extensions.Configuration
         /// </param>
         public static IConfiguration Resolved(
             this IConfiguration configuration,
-            ResolverOptions options = ResolverOptions.All
+            SubstitutionOptions options = SubstitutionOptions.All
         )
         {
             if (configuration is null)

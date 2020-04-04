@@ -10,9 +10,9 @@ namespace Extensions.Configuration.Resolver
     internal class ResolverValueProvider : IValueProvider
     {
         private readonly IValueProvider provider;
-        private readonly ResolverOptions options;
+        private readonly SubstitutionOptions options;
 
-        public ResolverValueProvider(IValueProvider provider, ResolverOptions options)
+        public ResolverValueProvider(IValueProvider provider, SubstitutionOptions options)
         {
             this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
             this.options = options;
