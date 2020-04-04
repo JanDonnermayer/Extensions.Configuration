@@ -10,6 +10,7 @@ namespace Extensions.Configuration.Resolver
     internal class ResolverValueProvider : IValueProvider
     {
         private readonly IValueProvider provider;
+
         private readonly SubstitutionOptions options;
 
         public ResolverValueProvider(IValueProvider provider, SubstitutionOptions options)
@@ -25,48 +26,54 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
+        /// <param name="mapUnresolvable">
+        /// A function used to map placeholders, which could not be resolved.
+        /// </param>
         /// <throws>
-        /// Throws <see cref="InvalidOperationException"/> when encountering loops
+        /// Throws <see cref="ValueUnresolvableException"/> when encountering loops
         /// during the substitution process.
         /// </throws>
-        public string GetValue(string key)
+        public string GetValue(string key, Func<string, string> mapUnresolvable)
         {
             if (key is null)
                 throw new ArgumentNullException(nameof(key));
 
-            string resolveExpression(string input, ImmutableHashSet<string> expressionPath)
+            if (mapUnresolvable is null)
+                throw new ArgumentNullException(nameof(mapUnresolvable));
+
+            string resolveExpression(string input, ImmutableHashSet<string> path)
             {
-                if (expressionPath.Contains(input))
+                if (path.Contains(input))
                 {
-                    throw new InvalidOperationException(
+                    throw new ValueUnresolvableException(
                         $"Encountered loop while trying to resolve expression: '{input}'."
-                        + $"Path: ['{String.Join("' -> '", expressionPath)}']"
+                        + $"Path: ['{String.Join("' -> '", path)}']"
                     );
                 }
 
-                var nextExpresionPath = expressionPath.Add(input);
+                var nextPath = path.Add(input);
 
                 return options
                     .ToRegexPatterns()
                     .Aggregate(input, (input, pattern) =>
-                    {
-                        return Regex.Replace(
+                        Regex.Replace(
                             input: input,
                             pattern: pattern,
-                            evaluator: m => resolveKey(
-                                input: m.Groups[1].Value,
-                                expressionPath: nextExpresionPath
-                            ),
+                            evaluator: m => resolveOrMap(m, nextPath) ,
                             options: RegexOptions.IgnoreCase
-                        );
-                    }
-                );
+                        )
+                    );
             }
 
-            string resolveKey(string input, ImmutableHashSet<string> expressionPath) =>
-               resolveExpression(provider.GetValue(input), expressionPath);
+            string resolveOrMap(Match match, ImmutableHashSet<string> path) =>
+                provider.TryGetValue(match.Groups[1].Value, out var val)
+                ? resolveExpression(val!, path)
+                : mapUnresolvable(match.Value) ?? "";
 
-            return resolveKey(key, ImmutableHashSet<string>.Empty);
+            return resolveExpression(
+                input: provider.GetValue(key),
+                path: ImmutableHashSet<string>.Empty
+            );
         }
 
         /// <summary>
@@ -76,8 +83,22 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
+        /// <throws>
+        /// Throws <see cref="ValueUnresolvableException"/> when a value can
+        /// not be resolved.
+        /// </throws>
+        public string GetValue(string key) =>
+            GetValue(key, value => throw new ValueUnresolvableException($"Failed to resolve value: {value}"));
+
+        /// <summary>
+        /// Gets the value associated with the specified <paramref name="key"/>,
+        /// recursively resolving placeholders.
+        /// </summary>
+        /// <param name="key">
+        /// The key whose value to resolve.
+        /// </param>
         /// <param name="value">
-        /// When this method returns, the value associated with the specified key, 
+        /// When this method returns, the value associated with the specified key,
         /// if the key can be resolved; otherwise, null.
         /// This parameter is passed uninitialized.
         /// </param>
@@ -93,6 +114,7 @@ namespace Extensions.Configuration.Resolver
             }
             catch (KeyNotFoundException) { }
             catch (InvalidOperationException) { }
+            catch (ValueUnresolvableException) { }
 
             value = null;
             return false;

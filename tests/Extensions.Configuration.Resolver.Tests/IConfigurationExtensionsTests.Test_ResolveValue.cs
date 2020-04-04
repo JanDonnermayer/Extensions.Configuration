@@ -46,7 +46,7 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2)]
             [TestCase(OPTIONS_3)]
             [TestCase(OPTIONS_4)]
-            public void ZeroResolveSteps_OneKeyPerStep_ResolvesCorrectly(
+            public void ZeroResolveSteps_OneKeyPerStep_ReturnsResolved(
                 SubstitutionOptions options
             )
             {
@@ -69,7 +69,7 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2)]
             [TestCase(OPTIONS_3)]
             [TestCase(OPTIONS_4)]
-            public void ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ResolvesCorrectly(
+            public void ZeroResolveSteps_OneKeyPerStep_KeyEmptyString_ReturnsResolved(
                 SubstitutionOptions options
             )
             {
@@ -92,7 +92,7 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
-            public void OneResolveStep_OneKeyPerStep_ResolvesCorrectly(
+            public void OneResolveStep_OneKeyPerStep_ReturnsResolved(
                 SubstitutionOptions options, string prefix, string suffix
             )
             {
@@ -121,7 +121,63 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
-            public void OneResolveStep_TwoKeysPerStep_ResolvesCorrectly(
+            public void OneResolveStep_OneKeyPerStep_FirstStepUnresolvable_InvokesMapValueFunction(
+                SubstitutionOptions options, string prefix, string suffix
+            )
+            {
+                // Arrange
+                const string KEY_1 = "key1";
+                const string KEY_2 = "key2";
+                string VALUE_1 = prefix + KEY_2 + suffix;
+
+                Mock.Get(configurationMock)
+                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
+                    .Returns(VALUE_1);
+
+                var mapValueMock = Mock.Of<Func<string, string>>();
+
+                // Act
+                configurationMock.ResolveValue(KEY_1, options, mapValueMock);
+
+                // Assert
+                Mock.Get(mapValueMock)
+                    .Verify(m => m(It.Is<string>(v => v == VALUE_1)));
+            }
+
+            [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+            [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
+            [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
+            [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
+            public void OneResolveStep_OneKeyPerStep_FirstStepUnresolvable_ReturnsMapValueFunctionResult(
+                SubstitutionOptions options, string prefix, string suffix
+            )
+            {
+                // Arrange
+                const string KEY_1 = "key1";
+                const string KEY_2 = "key2";
+                string VALUE_1 = prefix + KEY_2 + suffix;
+                const string VALUE_1_MAPPED = "val1";
+
+                Mock.Get(configurationMock)
+                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
+                    .Returns(VALUE_1);
+
+                var mapValueMock = Mock.Of<Func<string, string>>(
+                    f => f(VALUE_1) == VALUE_1_MAPPED
+                );
+
+                // Act
+                var result = configurationMock.ResolveValue(KEY_1, options, mapValueMock);
+
+                // Assert
+                Assert.AreEqual(VALUE_1_MAPPED, result);
+            }
+
+            [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+            [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
+            [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
+            [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
+            public void OneResolveStep_TwoKeysPerStep_ReturnsResolved(
                 SubstitutionOptions options, string prefix, string suffix
             )
             {
@@ -150,7 +206,7 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
-            public void TwoResolveSteps_OneKeyPerStep_ResolvesCorrectly(
+            public void TwoResolveSteps_OneKeyPerStep_ReturnsResolved(
                 SubstitutionOptions options, string prefix, string suffix
             )
             {
@@ -185,7 +241,40 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
-            public void InfiniteSteps_OneKeyPerStep_ThrowsInvalidOperationException(
+            public void TwoResolveSteps_OneKeyPerStep_SecondStepUnresolvable_InvokesMapValueFunction(
+                SubstitutionOptions options, string prefix, string suffix
+            )
+            {
+                // Arrange
+                const string KEY_1 = "key1";
+                const string KEY_2 = "key2";
+                const string KEY_3 = "key3";
+                string VALUE_1 = prefix + KEY_2 + suffix;
+                string VALUE_2 = prefix + KEY_3 + suffix;
+
+                Mock.Get(configurationMock)
+                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
+                    .Returns(VALUE_1);
+
+                Mock.Get(configurationMock)
+                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
+                    .Returns(VALUE_2);
+
+                var mapValueMock = Mock.Of<Func<string, string>>();
+
+                // Act
+                configurationMock.ResolveValue(KEY_1, options, mapValueMock);
+
+                // Assert
+                Mock.Get(mapValueMock)
+                    .Verify(m => m(It.Is<string>(v => v == VALUE_2)));
+            }
+
+            [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
+            [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
+            [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
+            [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
+            public void InfiniteSteps_OneKeyPerStep_ThrowsValueUnresolvableException(
                 SubstitutionOptions options, string prefix, string suffix
             )
             {
@@ -198,7 +287,7 @@ namespace Extensions.Configuration.Resolver.Tests
                     .Returns(VALUE_1);
 
                 // AssertThrows
-                Assert.Throws<InvalidOperationException>(
+                Assert.Throws<ValueUnresolvableException>(
                     () => configurationMock.ResolveValue(KEY_1, options)
                 );
             }
@@ -207,7 +296,7 @@ namespace Extensions.Configuration.Resolver.Tests
             [TestCase(OPTIONS_2, OPTIONS_2_PREFIX, OPTIONS_2_SUFFIX)]
             [TestCase(OPTIONS_3, OPTIONS_3_PREFIX, OPTIONS_3_SUFFIX)]
             [TestCase(OPTIONS_4, OPTIONS_4_PREFIX, OPTIONS_4_SUFFIX)]
-            public void InfiniteSteps_TwoKeysPerStep_ThrowsInvalidOperationException(
+            public void InfiniteSteps_TwoKeysPerStep_ThrowsValueUnresolvableException(
                 SubstitutionOptions options, string prefix, string suffix
             )
             {
@@ -220,7 +309,7 @@ namespace Extensions.Configuration.Resolver.Tests
                     .Returns(VALUE_1);
 
                 // AssertThrows
-                Assert.Throws<InvalidOperationException>(
+                Assert.Throws<ValueUnresolvableException>(
                     () => configurationMock.ResolveValue(KEY_1, options)
                 );
             }
@@ -243,6 +332,16 @@ namespace Extensions.Configuration.Resolver.Tests
             {
                 Assert.Throws<ArgumentNullException>(
                     () => configurationMock.ResolveValue(null)
+               );
+            }
+
+            [Test]
+            public void MapValueNull_ThrowsArgumentNullException()
+            {
+                Assert.Throws<ArgumentNullException>(
+                    () => configurationMock.ResolveValue(
+                        "KEY", SubstitutionOptions.All, null
+                    )
                );
             }
         }

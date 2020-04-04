@@ -29,13 +29,42 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="options">
         /// The options used in the resolver process.
         /// </param>
+        /// <param name="mapUnresolvable">
+        /// A function used to map placeholders, which could not be resolved.
+        /// </param>
         public static string ResolveValue(
             this IConfiguration configuration, string key,
-            SubstitutionOptions options = SubstitutionOptions.All) =>
+            SubstitutionOptions options, Func<string, string> mapUnresolvable) =>
                 configuration
                     .ToConfigurationValueProvider()
                     .ToResolverValueProvider(options)
-                    .GetValue(key);
+                    .GetValue(key, mapUnresolvable);
+
+        /// <summary>
+        /// Gets the value associated with the specified <paramref name="key"/>,
+        /// recursively resolving placeholders according to specified <paramref name="options"/>
+        /// </summary>
+        /// <param name="configuration">
+        /// The <paramref name="configuration"/> providing the values.
+        /// </param>
+        /// <param name="key">
+        /// The key whose value to resolve.
+        /// </param>
+        /// <param name="options">
+        /// The options used in the resolver process.
+        /// </param>
+        /// <throws>
+        /// Throws <see cref="ValueUnresolvableException"/> when a value can
+        /// not be resolved.
+        /// </throws>
+        public static string ResolveValue(
+            this IConfiguration configuration, string key,
+            SubstitutionOptions options = SubstitutionOptions.All) =>
+                configuration.ResolveValue(
+                    key: key,
+                    options: options,
+                    mapUnresolvable: value => throw new ValueUnresolvableException($"Failed to resolve value: {value}")
+                );
 
         /// <summary>
         /// Gets the value associated with the specified <paramref name="key"/>,
