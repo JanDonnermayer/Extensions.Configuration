@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Extensions.Configuration.Resolver
+namespace Microsoft.Extensions.Configuration
 {
     internal static class ResolverOptionsExtensions
     {
         /// <summary>
-        /// Converts the specified <paramref name="options"/> to their corresponding 
+        /// Converts the specified <paramref name="options"/> to their corresponding
         /// Regular Expressions.
         /// </summary>
         public static IEnumerable<string> ToRegexPatterns(this ResolverOptions options)

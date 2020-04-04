@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Extensions.Configuration.Resolver
 {
     internal static class IValueProviderExtensions
