@@ -54,9 +54,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY_1 = "key1";
                 const string VALUE_1 = "val1";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 // Act
                 var actualValue = configurationMock.ResolveValue(KEY_1, options);
@@ -77,9 +77,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY_1 = "";
                 const string VALUE_1 = "val1";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 // Act
                 var actualValue = configurationMock.ResolveValue(KEY_1, options);
@@ -102,13 +102,10 @@ namespace Extensions.Configuration.Resolver.Tests
                 string VALUE_1 = prefix + KEY_2 + suffix;
                 const string VALUE_2 = "val2";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
-
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
-                    .Returns(VALUE_2);
+                configurationMock = Mock.Of<IConfiguration>(c =>
+                    c[KEY_1] == VALUE_1 &&
+                    c[KEY_2] == VALUE_2
+                );
 
                 // Act
                 var actualValue = configurationMock.ResolveValue(KEY_1, options);
@@ -130,9 +127,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY_2 = "key2";
                 string VALUE_1 = prefix + KEY_2 + suffix;
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 var mapValueMock = Mock.Of<Func<string, string>>();
 
@@ -158,9 +155,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 string VALUE_1 = prefix + KEY_2 + suffix;
                 const string VALUE_1_MAPPED = "val1";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 var mapValueMock = Mock.Of<Func<string, string>>(
                     f => f(VALUE_1) == VALUE_1_MAPPED
@@ -187,13 +184,10 @@ namespace Extensions.Configuration.Resolver.Tests
                 string VALUE_1 = prefix + KEY_2 + suffix + prefix + KEY_2 + suffix;
                 const string VALUE_2 = "val2";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
-
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
-                    .Returns(VALUE_2);
+                configurationMock = Mock.Of<IConfiguration>(c =>
+                    c[KEY_1] == VALUE_1 &&
+                    c[KEY_2] == VALUE_2
+                );
 
                 // Act
                 var actualValue = configurationMock.ResolveValue(KEY_1, options);
@@ -218,17 +212,11 @@ namespace Extensions.Configuration.Resolver.Tests
                 string VALUE_2 = prefix + KEY_3 + suffix;
                 const string VALUE_3 = "val2";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
-
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
-                    .Returns(VALUE_2);
-
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_3)])
-                    .Returns(VALUE_3);
+                configurationMock = Mock.Of<IConfiguration>(c =>
+                    c[KEY_1] == VALUE_1 &&
+                    c[KEY_2] == VALUE_2 &&
+                    c[KEY_3] == VALUE_3
+                );
 
                 // Act
                 var actualValue = configurationMock.ResolveValue(KEY_1, options);
@@ -252,13 +240,10 @@ namespace Extensions.Configuration.Resolver.Tests
                 string VALUE_1 = prefix + KEY_2 + suffix;
                 string VALUE_2 = prefix + KEY_3 + suffix;
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
-
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_2)])
-                    .Returns(VALUE_2);
+                configurationMock = Mock.Of<IConfiguration>(c =>
+                    c[KEY_1] == VALUE_1 &&
+                    c[KEY_2] == VALUE_2
+                );
 
                 var mapValueMock = Mock.Of<Func<string, string>>();
 
@@ -282,9 +267,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY_1 = "key1";
                 string VALUE_1 = prefix + KEY_1 + suffix;
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 // AssertThrows
                 Assert.Throws<ValueUnresolvableException>(
@@ -304,9 +289,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY_1 = "key1";
                 string VALUE_1 = prefix + KEY_1 + suffix + prefix + KEY_1 + suffix;
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY_1)])
-                    .Returns(VALUE_1);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY_1] == VALUE_1
+                );
 
                 // AssertThrows
                 Assert.Throws<ValueUnresolvableException>(
@@ -328,7 +313,7 @@ namespace Extensions.Configuration.Resolver.Tests
             }
 
             [Test]
-            public void KeyNull_ThrowsArgumentNullException()
+            public void ParameterKeyNull_ThrowsArgumentNullException()
             {
                 Assert.Throws<ArgumentNullException>(
                     () => configurationMock.ResolveValue(null)
@@ -336,7 +321,7 @@ namespace Extensions.Configuration.Resolver.Tests
             }
 
             [Test]
-            public void MapValueNull_ThrowsArgumentNullException()
+            public void ParameterMapValueNull_ThrowsArgumentNullException()
             {
                 Assert.Throws<ArgumentNullException>(
                     () => configurationMock.ResolveValue(

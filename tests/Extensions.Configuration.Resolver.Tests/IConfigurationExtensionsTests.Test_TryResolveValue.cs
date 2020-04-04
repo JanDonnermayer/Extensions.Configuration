@@ -23,9 +23,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY = "key";
                 const string VALUE = "val";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY)])
-                    .Returns(VALUE);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY] == VALUE
+                );
 
                 // Act
                 var result = configurationMock
@@ -42,9 +42,9 @@ namespace Extensions.Configuration.Resolver.Tests
                 const string KEY = "key";
                 const string VALUE = "val";
 
-                Mock.Get(configurationMock)
-                    .SetupGet(cfg => cfg[It.Is<string>(k => k == KEY)])
-                    .Returns(VALUE);
+                configurationMock = Mock.Of<IConfiguration>(
+                    c => c[KEY] == VALUE
+                );
 
                 // Act
                 configurationMock

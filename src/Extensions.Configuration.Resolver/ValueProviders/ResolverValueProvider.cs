@@ -113,7 +113,6 @@ namespace Extensions.Configuration.Resolver
                 return true;
             }
             catch (KeyNotFoundException) { }
-            catch (InvalidOperationException) { }
             catch (ValueUnresolvableException) { }
 
             value = null;

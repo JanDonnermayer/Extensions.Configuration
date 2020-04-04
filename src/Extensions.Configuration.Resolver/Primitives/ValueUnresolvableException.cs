@@ -5,9 +5,9 @@ namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
     /// The exception that is thrown,
-    /// when an expression could not be resolved.
+    /// when a value could not be resolved.
     /// </summary>
-    public class ValueUnresolvableException : Exception
+    public class ValueUnresolvableException : InvalidOperationException
     {
         internal ValueUnresolvableException()
         {
