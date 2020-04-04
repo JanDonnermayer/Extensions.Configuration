@@ -63,7 +63,7 @@ namespace Microsoft.Extensions.Configuration
                 configuration.ResolveValue(
                     key: key,
                     options: options,
-                    mapUnresolvable: value => throw new ValueUnresolvableException($"Failed to resolve value: {value}")
+                    mapUnresolvable: ThrowValueUnresolvableException
                 );
 
         /// <summary>
@@ -119,5 +119,8 @@ namespace Microsoft.Extensions.Configuration
                 ) ? val! : null! // Required by signature
             );
         }
+
+        private static string ThrowValueUnresolvableException(string value) =>
+            throw new ValueUnresolvableException($"Failed to resolve value: {value}");
     }
 }
