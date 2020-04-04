@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Resolver
 {
@@ -24,7 +25,7 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
-        /// <throws> 
+        /// <throws>
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
         /// during the substitution process.
         /// </throws>
