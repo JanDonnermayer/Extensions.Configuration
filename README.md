@@ -17,7 +17,7 @@ This is a umbrella package for two seperate packages
 dotnet add package Extensions.Configuration
 ```
 
-# Extensions.Configuration.Sources.Object
+# Extensions.Configuration.Sources.Objects
 
 [![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration.Sources.Object/)
 

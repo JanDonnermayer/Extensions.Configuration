@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.Configuration
 {
+    /// <summary>
+    /// Provides extension methods for <see cref="IConfigurationBuilder"/>
+    /// </summary>
     public static class IConfigurationBuilderExtensions
     {
         /// <summary>
@@ -18,7 +21,7 @@ namespace Microsoft.Extensions.Configuration
         /// <returns>The specified <see cref="IConfigurationBuilder"/> for chaining.</returns>
         /// <Example>
         /// builder.AddObject( ("key", "value") );
-        /// <Example>
+        /// </Example>
         public static IConfigurationBuilder AddObject<T>(this IConfigurationBuilder builder, T source)
         {
             if (builder == null)
