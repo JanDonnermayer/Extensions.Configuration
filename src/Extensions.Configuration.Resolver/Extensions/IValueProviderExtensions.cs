@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Resolver
@@ -9,7 +10,7 @@ namespace Extensions.Configuration.Resolver
         /// <paramref name="provider"/>.
         /// </summary>
         public static ResolverValueProvider ToResolverValueProvider(
-            this IValueProvider provider, SubstitutionOptions options) =>
-                new ResolverValueProvider(provider, options);
+            this IValueProvider provider, SubstitutionOptions options, Func<string, string> mapUnresolvable) =>
+                new ResolverValueProvider(provider, options, mapUnresolvable);
     }
 }

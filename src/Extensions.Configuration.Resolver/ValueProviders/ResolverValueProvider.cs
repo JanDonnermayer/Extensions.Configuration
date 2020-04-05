@@ -13,10 +13,21 @@ namespace Extensions.Configuration.Resolver
 
         private readonly SubstitutionOptions options;
 
-        public ResolverValueProvider(IValueProvider provider, SubstitutionOptions options)
+        private readonly Func<string, string> mapUnresolvable;
+
+        /// <summary>
+        /// Initiaizes a new instance of the <see cref="ResolverValueProvider"/>class.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="options"></param>
+        /// <param name="mapUnresolvable">
+        /// A function used to map placeholders, which could not be resolved.
+        /// </param>
+        public ResolverValueProvider(IValueProvider provider, SubstitutionOptions options, Func<string, string> mapUnresolvable)
         {
             this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
             this.options = options;
+            this.mapUnresolvable = mapUnresolvable ?? throw new ArgumentNullException(nameof(mapUnresolvable));
         }
 
         /// <summary>
@@ -26,20 +37,10 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
-        /// <param name="mapUnresolvable">
-        /// A function used to map placeholders, which could not be resolved.
-        /// </param>
-        /// <throws>
-        /// Throws <see cref="ValueUnresolvableException"/> when encountering loops
-        /// during the substitution process.
-        /// </throws>
-        public string GetValue(string key, Func<string, string> mapUnresolvable)
+        public string GetValue(string key)
         {
             if (key is null)
                 throw new ArgumentNullException(nameof(key));
-
-            if (mapUnresolvable is null)
-                throw new ArgumentNullException(nameof(mapUnresolvable));
 
             string resolveExpression(string input, ImmutableHashSet<string> path)
             {
@@ -75,20 +76,6 @@ namespace Extensions.Configuration.Resolver
                 path: ImmutableHashSet<string>.Empty
             );
         }
-
-        /// <summary>
-        /// Gets the value associated with the specified <paramref name="key"/>,
-        /// recursively resolving placeholders.
-        /// </summary>
-        /// <param name="key">
-        /// The key whose value to resolve.
-        /// </param>
-        /// <throws>
-        /// Throws <see cref="ValueUnresolvableException"/> when a value can
-        /// not be resolved.
-        /// </throws>
-        public string GetValue(string key) =>
-            GetValue(key, value => throw new ValueUnresolvableException($"Failed to resolve value: {value}"));
 
         /// <summary>
         /// Gets the value associated with the specified <paramref name="key"/>,

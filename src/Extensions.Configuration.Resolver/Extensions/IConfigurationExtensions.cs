@@ -37,8 +37,8 @@ namespace Microsoft.Extensions.Configuration
             SubstitutionOptions options, Func<string, string> mapUnresolvable) =>
                 configuration
                     .ToConfigurationValueProvider()
-                    .ToResolverValueProvider(options)
-                    .GetValue(key, mapUnresolvable);
+                    .ToResolverValueProvider(options, mapUnresolvable)
+                    .GetValue(key);
 
         /// <summary>
         /// Gets the value associated with the specified <paramref name="key"/>,
@@ -60,11 +60,10 @@ namespace Microsoft.Extensions.Configuration
         public static string ResolveValue(
             this IConfiguration configuration, string key,
             SubstitutionOptions options = SubstitutionOptions.All) =>
-                configuration.ResolveValue(
-                    key: key,
-                    options: options,
-                    mapUnresolvable: ThrowValueUnresolvableException
-                );
+                configuration
+                    .ToConfigurationValueProvider()
+                    .ToResolverValueProvider(options, ThrowValueUnresolvableException)
+                    .GetValue(key);
 
         /// <summary>
         /// Gets the value associated with the specified <paramref name="key"/>,
@@ -88,7 +87,7 @@ namespace Microsoft.Extensions.Configuration
             out string? value, SubstitutionOptions options = SubstitutionOptions.All) =>
                 configuration
                     .ToConfigurationValueProvider()
-                    .ToResolverValueProvider(options)
+                    .ToResolverValueProvider(options, ThrowValueUnresolvableException)
                     .TryGetValue(key, out value);
 
         /// <summary>
