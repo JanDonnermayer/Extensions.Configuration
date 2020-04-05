@@ -84,11 +84,17 @@ namespace Microsoft.Extensions.Configuration
         /// The options used in the resolver process.
         /// </param>
         public static bool TryResolveValue(this IConfiguration configuration, string key,
-            out string? value, SubstitutionOptions options = SubstitutionOptions.All) =>
-                configuration
-                    .ToConfigurationValueProvider()
-                    .ToResolverValueProvider(options, ThrowValueUnresolvableException)
-                    .TryGetValue(key, out value);
+            out string? value, SubstitutionOptions options = SubstitutionOptions.All
+        )
+        {
+            var result = configuration
+                .ToConfigurationValueProvider()
+                .ToResolverValueProvider(options, ThrowValueUnresolvableException)
+                .TryGetValue(key);
+
+            value = result.value;
+            return result.success;
+        }
 
         /// <summary>
         /// Creates an instance of <see cref="IConfiguration"/>, wherein

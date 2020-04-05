@@ -4,6 +4,6 @@ namespace Extensions.Configuration.Resolver
     {
         string GetValue(string key);
 
-        bool TryGetValue(string key, out string? value);
+        (bool success, string? value) TryGetValue(string key);
     }
 }

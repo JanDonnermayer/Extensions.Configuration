@@ -18,8 +18,8 @@ namespace Extensions.Configuration.Resolver
         /// <summary>
         /// Initiaizes a new instance of the <see cref="ResolverValueProvider"/>class.
         /// </summary>
-        /// <param name="provider"></param>
-        /// <param name="options"></param>
+        /// <param name="provider">The provider from which to get the raw values.</param>
+        /// <param name="options">The options to use.</param>
         /// <param name="mapUnresolvable">
         /// A function used to map placeholders, which could not be resolved.
         /// </param>
@@ -60,16 +60,18 @@ namespace Extensions.Configuration.Resolver
                         Regex.Replace(
                             input: input,
                             pattern: pattern,
-                            evaluator: m => resolveOrMap(m, nextPath) ,
+                            evaluator: m => resolveOrMap(m, nextPath),
                             options: RegexOptions.IgnoreCase
                         )
                     );
             }
 
             string resolveOrMap(Match match, ImmutableHashSet<string> path) =>
-                provider.TryGetValue(match.Groups[1].Value, out var val)
-                ? resolveExpression(val!, path)
-                : mapUnresolvable(match.Value) ?? "";
+                provider.TryGetValue(match.Groups[1].Value) switch
+                {
+                    (true, string val) => resolveExpression(val, path),
+                    _ => mapUnresolvable(match.Value) ?? "",
+                };
 
             return resolveExpression(
                 input: provider.GetValue(key),
@@ -84,26 +86,19 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
-        /// <param name="value">
-        /// When this method returns, the value associated with the specified key,
-        /// if the key can be resolved; otherwise, null.
-        /// This parameter is passed uninitialized.
-        /// </param>
-        public bool TryGetValue(string key, out string? value)
+        public (bool success, string? value) TryGetValue(string key)
         {
             if (key is null)
                 throw new ArgumentNullException(nameof(key));
 
             try
             {
-                value = GetValue(key);
-                return true;
+                return (true, GetValue(key));
             }
-            catch (KeyNotFoundException) { }
-            catch (ValueUnresolvableException) { }
-
-            value = null;
-            return false;
+            catch (Exception ex) when (!(ex is ArgumentException))
+            {
+                return (false, null);
+            }
         }
     }
 }

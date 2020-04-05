@@ -21,17 +21,11 @@ namespace Extensions.Configuration.Resolver
                 _ => throw new KeyNotFoundException($"No such key: '{key}'")
             };
 
-        public bool TryGetValue(string key, out string? value)
-        {
-            try
+        public (bool success, string? value) TryGetValue(string key) =>
+            configuration[key] switch
             {
-                value = GetValue(key);
-                return true;
-            }
-            catch (KeyNotFoundException) { }
-
-            value = null;
-            return false;
-        }
+                string val => (true, val),
+                _ => (false, null)
+            };
     }
 }
