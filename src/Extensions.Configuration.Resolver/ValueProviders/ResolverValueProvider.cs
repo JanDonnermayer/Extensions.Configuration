@@ -24,7 +24,7 @@ namespace Extensions.Configuration.Resolver
         /// <param name="key">
         /// The key whose value to resolve.
         /// </param>
-        /// <throws> 
+        /// <throws>
         /// Throws <see cref="InvalidOperationException"/> when encountering loops
         /// during the substitution process.
         /// </throws>
@@ -76,7 +76,7 @@ namespace Extensions.Configuration.Resolver
         /// The key whose value to resolve.
         /// </param>
         /// <param name="value">
-        /// When this method returns, the value associated with the specified key, 
+        /// When this method returns, the value associated with the specified key,
         /// if the key can be resolved; otherwise, null.
         /// This parameter is passed uninitialized.
         /// </param>

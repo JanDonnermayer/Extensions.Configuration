@@ -9,14 +9,19 @@ namespace Extensions.Configuration.Sources.Objects
     internal static class TreeMapProvider
     {
         private const string CIRCULAR_OBJECT_GRAPH_DETECTED_MESSAGE =
-                "Circular object-graph detected!";
+            "Circular object-graph detected!";
 
         private const string OBJECT_COUNT_THRESHOLD_REACHED_MESSAGE =
-              "Maximum object-count-threshold reached!" +
-              "This can be a sign of a recursively generated object-graph.";
+            "Maximum object-count-threshold reached!" +
+            "This can be a sign of a recursively generated object-graph.";
 
         private const int OBJECT_COUNT_THRESHOLD = 10000;
 
+        /// <summary>
+        /// Converts the specfied object graph to a dictionary,
+        /// mapping property-names to keys and property-values to values.
+        /// Objects are converted to dictionaries.
+        /// </summary>
         public static IReadOnlyDictionary<string, object> GetTreeMap<T>(T source)
         {
             var visited = new HashSet<object>();

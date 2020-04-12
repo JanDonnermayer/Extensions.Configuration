@@ -8,8 +8,8 @@ namespace Extensions.Configuration.Sources.Objects
     internal static class TreeFolder
     {
         /// <summary>
-        /// Converts a sequence of trees of KeyValuePairs into a flat sequence of
-        /// KeyValuePairs, aggregating keys into sequences.
+        /// Converts the specified sequence of trees of KeyValuePairs
+        /// to a flat sequence of KeyValuePairs, aggregating keys into sequences.
         /// </summary>
         /// <param name="source">A sequence of trees of KeyValuePairs</param>
         /// <param name="valueConverter">A function that converts the values of KeyValuePairs at leafs.</param>
