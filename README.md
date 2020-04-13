@@ -2,7 +2,7 @@
 
 [![](https://github.com/JanDonnermayer/Extensions.Configuration/workflows/UnitTests/badge.svg)](https://github.com/JanDonnermayer/Extensions.Configuration/actions)
 
-[![](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration/)
+[![](https://img.shields.io/badge/nuget-v0.0.4-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration/)
 
 ## Description
 
@@ -19,7 +19,7 @@ dotnet add package Extensions.Configuration
 
 # Extensions.Configuration.Sources.Objects
 
-[![](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration.Sources.Object/)
+[![](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration.Sources.Object/)
 
 ## Description
 
@@ -60,7 +60,7 @@ var val = configuration["K1:K2"];
 
 # Extensions.Configuration.Resolver
 
-[![](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration.Resolver/)
+[![](https://img.shields.io/badge/nuget-v0.0.4-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration.Resolver/)
 
 ## Description
 
