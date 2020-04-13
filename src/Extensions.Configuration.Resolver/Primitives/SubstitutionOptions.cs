@@ -1,13 +1,12 @@
 ﻿using System;
 
-
-namespace Extensions.Configuration.Resolver
+namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// The key-substitution syntax to use for resolvers.
+    /// The key-substitution syntax to use for configuration resolvers.
     /// </summary>
     [Flags]
-    public enum ResolverOptions
+    public enum SubstitutionOptions
     {
         /// <summary>
         /// No format.
