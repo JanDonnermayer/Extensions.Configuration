@@ -15,7 +15,6 @@ namespace Extensions.Configuration.Resolver.Tests
 
         private ConfigurationProxy proxy;
 
-
         [SetUp]
         public void Setup()
         {
