@@ -138,7 +138,7 @@ namespace Extensions.Configuration.Resolver.Tests
 
                 // Assert
                 Mock.Get(mapValueMock)
-                    .Verify(m => m(It.Is<string>(v => v == VALUE_1)));
+                    .Verify(f => f(It.Is<string>(v => v == VALUE_1)));
             }
 
             [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
@@ -252,7 +252,7 @@ namespace Extensions.Configuration.Resolver.Tests
 
                 // Assert
                 Mock.Get(mapValueMock)
-                    .Verify(m => m(It.Is<string>(v => v == VALUE_2)));
+                    .Verify(f => f(It.Is<string>(v => v == VALUE_2)));
             }
 
             [TestCase(OPTIONS_1, OPTIONS_1_PREFIX, OPTIONS_1_SUFFIX)]
