@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// Adds the properties of the specified <paramref name="source"/>
         /// as configuration entries to the <see cref="IConfigurationBuilder"/>,
+        /// mapping property-names to keys and property-values to values,
         /// including nested objects.
         /// </summary>
         /// <param name="builder">The builder to which to add the configuration entries.</param>
@@ -20,7 +21,7 @@ namespace Microsoft.Extensions.Configuration
         /// <typeparam name="T">The type of the specified <paramref name="source"/></typeparam>
         /// <returns>The specified <see cref="IConfigurationBuilder"/> for chaining.</returns>
         /// <Example>
-        /// builder.AddObject( ("key", "value") );
+        /// builder.AddObject( ("value1", "value2") );
         /// </Example>
         public static IConfigurationBuilder AddObject<T>(this IConfigurationBuilder builder, T source)
         {
