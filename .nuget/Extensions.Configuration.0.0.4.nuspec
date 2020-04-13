@@ -10,12 +10,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <description>Adds functionality to Microsoft.Extensions.Configuration.</description>
-    <summary>Add builder extensions.</summary>
+    <summary>Add builder extensions for objects.</summary>
     <repository type="git" url="https://github.com/JanDonnermayer/Extensions.Configuration" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Extensions.Configuration.Resolver" version="0.0.3" exclude="Build,Analyzers" />
-        <dependency id="Extensions.Configuration.Sources.Objects" version="0.0.1" exclude="Build,Analyzers" />
+        <dependency id="Extensions.Configuration.Resolver" version="0.0.4" exclude="Build,Analyzers" />
+        <dependency id="Extensions.Configuration.Sources.Objects" version="0.0.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
     <tags>configuration extension resolver substitute substitution key value map</tags>

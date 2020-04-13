@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Extensions.Configuration.Resolver</id>
+    <version>0.0.4</version>
+    <title>Extensions.Configuration.Resolver</title>
+    <authors>Jan Donnermayer</authors>
+    <owners>Jan Donnermayer</owners>
+    <projectUrl>https://github.com/JanDonnermayer/Extensions.Configuration</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>Icon.png</icon>
+    <license type="expression">MIT</license>
+    <description>Functionality to resolve values from configuration providers for Microsoft.Extensions.Configuration.</description>
+    <summary>Support custom delegates for handling unresolvable expressions.</summary>
+    <repository type="git" url="https://github.com/JanDonnermayer/Extensions.Configuration" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="1.7.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <tags>configuration extension resolver substitute substitution key value map</tags>
+  </metadata>
+  <files>
+    <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.dll" target="lib\netstandard2.0\Extensions.Configuration.Resolver.dll" />
+    <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.xml" target="lib\netstandard2.0\Extensions.Configuration.Resolver.xml" />
+    <file src="Icon_bright.png" target="Icon.png"/>
+  </files>
+</package>
