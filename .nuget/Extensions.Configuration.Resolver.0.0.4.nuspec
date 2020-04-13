@@ -11,7 +11,7 @@
     <icon>Icon.png</icon>
     <license type="expression">MIT</license>
     <description>Functionality to resolve values from configuration providers for Microsoft.Extensions.Configuration.</description>
-    <summary>Support custom delegates for handling unresolvable expressions.</summary>
+    <summary>Functionality to resolve values from configuration providers for Microsoft.Extensions.Configuration.</summary>
     <repository type="git" url="https://github.com/JanDonnermayer/Extensions.Configuration" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
