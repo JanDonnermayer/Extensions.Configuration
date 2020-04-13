@@ -10,7 +10,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         [Test]
         public void Test_GetTreeMap_ObjectWithStringProperties_PropertiesAdded()
         {
-            // Setup
+            // Arrange
             const string FIRST_NAME = "Jan";
             const string LAST_NAME = "Donnermayer";
 
@@ -32,7 +32,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         [Test]
         public void Test_GetTreeMap_ObjectWithValueProperties_PropertiesAdded()
         {
-            // Setup
+            // Arrange
             const int AGE = 24;
             const double HEIGHT = 1.75;
             const bool MALE = true;
@@ -56,7 +56,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         [Test]
         public void Test_GetTreeMap_NestedObject_StringPropertiesAdded()
         {
-            // Setup
+            // Arrange
             const string NAME = "Jan";
             const string COMPANY_NAME = "Genet";
 
@@ -83,7 +83,7 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         [Test]
         public void Test_GetTreeMap_RecursiveObject_ThrowsInvalidOperationException()
         {
-            // Setup
+            // Arrange
             var x = new Box<object>();
             x.Value = x;
 
@@ -96,14 +96,25 @@ namespace Extensions.Configuration.Sources.Objects.Tests
         [Test]
         public void Test_GetTreeMap_WriteOnlyObject_DoesNotThrow()
         {
-            // Setup & Act & Assert
+            // Arrange & Act & Assert
             Assert.DoesNotThrow(
                 () => TreeMapProvider.GetTreeMap(new WriteOnlyBox<object>())
+            );
+        }
+
+        [Test]
+        public void Test_GetTreeMap_IndexerObject_DoesNotThrow()
+        {
+            // Arrange & Act & Assert
+            Assert.DoesNotThrow(
+                () => TreeMapProvider.GetTreeMap(new IndexerBox<object>())
             );
         }
 
         private class Box<T> { public T Value { get; set; } }
 
         private class WriteOnlyBox<T> { public T Value { set { } } }
+
+        private class IndexerBox<T> { public T this[T arg] => arg; }
     }
 }

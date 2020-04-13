@@ -18,9 +18,8 @@ namespace Extensions.Configuration.Sources.Objects
         private const int OBJECT_COUNT_THRESHOLD = 10000;
 
         /// <summary>
-        /// Converts the specfied object graph to a dictionary,
+        /// Converts objects to dictionaries recursively,
         /// mapping property-names to keys and property-values to values.
-        /// Objects are converted to dictionaries.
         /// </summary>
         public static IReadOnlyDictionary<string, object> GetTreeMap<T>(T source)
         {
@@ -40,11 +39,14 @@ namespace Extensions.Configuration.Sources.Objects
                 return node;
             }
 
+            static bool IsUseable(PropertyInfo pi) =>
+                pi.CanRead && pi.GetIndexParameters().Length == 0;
+
             IReadOnlyDictionary<string, object> GetDictionaryInternal<V>(V source) =>
                 Visit(source)!
                     .GetType()
                     .GetProperties()
-                    .Where(p => p.CanRead)
+                    .Where(IsUseable)
                     .ToImmutableDictionary(
                         p => p.Name,
                         p => GetDictionaryOrValue(
