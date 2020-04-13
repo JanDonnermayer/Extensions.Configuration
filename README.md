@@ -8,7 +8,7 @@
 
 This is a umbrella package for two seperate packages
 
-- Extensions.Configuration.Sources.Object
+- Extensions.Configuration.Sources.Objects
 - Extensions.Configuration.Resolver
 
 ## Installation
