@@ -25,9 +25,9 @@ namespace Extensions.Configuration.Sources.Objects.Tests
 
             var expected = new Dictionary<IEnumerable<string>, string>()
             {
-                { new [] { "K1", "K11"}, "V11" },
-                { new [] { "K1", "K12"}, "V12" },
-                { new [] { "K2"}, "V2"  },
+                { new [] { "K1", "K11" }, "V11" },
+                { new [] { "K1", "K12" }, "V12" },
+                { new [] { "K2" }, "V2" },
             };
 
             // Act
