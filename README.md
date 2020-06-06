@@ -4,6 +4,8 @@
 
 [![](https://img.shields.io/badge/nuget-v0.0.4-blue.svg)](https://www.nuget.org/packages/Extensions.Configuration/)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/jandonnermayer/extensions.configuration/badge/master)](https://www.codefactor.io/repository/github/jandonnermayer/extensions.configuration/overview/master)
+
 ## Description
 
 This is a umbrella package for two seperate packages
