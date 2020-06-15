@@ -5,15 +5,15 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C52FF7BB-6C70-458A-96F7-BA422C457D55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Resolver", "src\Extensions.Configuration.Resolver\Extensions.Configuration.Resolver.csproj", "{BD22775D-B039-45C9-B768-50CBF3AAAE2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Resolver", "src\Resolver\Extensions.Configuration.Resolver.csproj", "{BD22775D-B039-45C9-B768-50CBF3AAAE2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{703AA087-2E1F-48D2-8FD8-D3139486FA4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Resolver.Tests", "tests\Extensions.Configuration.Resolver.Tests\Extensions.Configuration.Resolver.Tests.csproj", "{0CEF0747-DDA4-4175-88B0-022F0C80A7C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Resolver.Tests", "tests\Resolver.tests\Extensions.Configuration.Resolver.Tests.csproj", "{0CEF0747-DDA4-4175-88B0-022F0C80A7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Sources.Objects", "src\Extensions.Configuration.Sources.Objects\Extensions.Configuration.Sources.Objects.csproj", "{52CC49B8-74D9-404A-8211-263FF246F691}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Sources.Objects", "src\Sources.Objects\Extensions.Configuration.Sources.Objects.csproj", "{52CC49B8-74D9-404A-8211-263FF246F691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Sources.Objects.Tests", "tests\Extensions.Configuration.Sources.Objects.Tests\Extensions.Configuration.Sources.Objects.Tests.csproj", "{E7E2F65B-23C5-4840-8FB5-9C5F4BD7D460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Sources.Objects.Tests", "tests\Sources.Objects.tests\Extensions.Configuration.Sources.Objects.Tests.csproj", "{E7E2F65B-23C5-4840-8FB5-9C5F4BD7D460}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

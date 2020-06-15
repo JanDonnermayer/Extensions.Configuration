@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Extensions.Configuration.Resolver\Extensions.Configuration.Resolver.csproj" />
+    <ProjectReference Include="..\..\src\Resolver\Extensions.Configuration.Resolver.csproj" />
   </ItemGroup>
 
 </Project>

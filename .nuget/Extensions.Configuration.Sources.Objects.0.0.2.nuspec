@@ -21,7 +21,7 @@
     <tags></tags>
   </metadata>
   <files>
-    <file src="..\src\Extensions.Configuration.Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" />
-    <file src="..\src\Extensions.Configuration.Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" />
+    <file src="..\src\Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.dll" />
+    <file src="..\src\Sources.Objects\bin\release\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" target="lib\netstandard2.0\Extensions.Configuration.Sources.Objects.xml" />
   </files>
 </package>

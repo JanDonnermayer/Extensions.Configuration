@@ -22,8 +22,8 @@
     <tags>configuration extension resolver substitute substitution key value map</tags>
   </metadata>
   <files>
-    <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.dll" target="lib\netstandard2.0\Extensions.Configuration.Resolver.dll" />
-    <file src="..\src\Extensions.Configuration.Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.xml" target="lib\netstandard2.0\Extensions.Configuration.Resolver.xml" />
+    <file src="..\src\Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.dll" target="lib\netstandard2.0\Extensions.Configuration.Resolver.dll" />
+    <file src="..\src\Resolver\bin\release\netstandard2.0\Extensions.Configuration.Resolver.xml" target="lib\netstandard2.0\Extensions.Configuration.Resolver.xml" />
     <file src="Icon_bright.png" target="Icon.png"/>
   </files>
 </package>

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "${workspaceFolder}/src/Resolver/Extensions.Configuration.Resolver.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release"
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "${workspaceFolder}/src/Resolver/Extensions.Configuration.Resolver.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release"
@@ -31,7 +31,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Extensions.Configuration.Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
+                "${workspaceFolder}/src/Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release"
@@ -43,7 +43,7 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "${workspaceFolder}/src/Resolver/Extensions.Configuration.Resolver.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release"
@@ -84,7 +84,7 @@
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/src/Extensions.Configuration.Resolver/Extensions.Configuration.Resolver.csproj",
+                "${workspaceFolder}/src/Resolver/Extensions.Configuration.Resolver.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release",
@@ -120,7 +120,7 @@
             "type": "process",
             "args": [
                 "pack",
-                "${workspaceFolder}/src/Extensions.Configuration.Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
+                "${workspaceFolder}/src/Sources.Objects/Extensions.Configuration.Sources.Objects.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c:Release",
