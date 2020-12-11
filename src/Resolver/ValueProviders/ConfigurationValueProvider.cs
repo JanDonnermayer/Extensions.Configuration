@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Extensions.Configuration.Resolver
 {
+
     internal class ConfigurationValueProvider : IValueProvider
     {
         private readonly IConfiguration configuration;
